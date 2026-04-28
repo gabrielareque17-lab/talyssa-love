@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talyssa Mayra ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #faf7f2;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(to bottom, #fffdf9, #f5ede2);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    h1 {
+      letter-spacing: 1px;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #3b2f2f;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: #5a4d4d;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 1.15rem;
+      max-width: 750px;
+      margin: 30px auto;
+      color: #6a5656;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 28px;
+      border: 1px solid #b89f7a;
+      color: #6b5336;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: 0.3s;
+      background: white;
+    }
+
+    .btn:hover {
+      background: #b89f7a;
+      color: white;
+    }
+
+    section {
+      padding: 80px 20px;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #3b2f2f;
+    }
+
+    .timeline {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      border: 1px solid rgba(184,159,122,0.12);
+      background: white;
+      padding: 24px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 8px;
+      color: #5c4630;
+    }
+
+    .letter {
+      border: 1px solid rgba(184,159,122,0.10);
+      backdrop-filter: blur(6px);
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .final {
+      text-align: center;
+      padding-bottom: 100px;
+    }
+
+    footer {
+      animation: fadeUp 1.2s ease;
+    }
+
+    .hero, .timeline-item, .letter, .final, nav {
+      animation: fadeUp 1s ease;
+    }
+
+    h1, h2, .subtitle, .quote {
+      animation: fadeUp 1.4s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.95rem;
+      color: #7a7a7a;
+    }
+
+    @media (max-width: 768px) {
+      nav div {
+        gap: 14px !important;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+      }
+
+      .timeline-item {
+        flex-direction: column !important;
+        text-align: center;
+      }
+
+      .timeline-item img {
+        width: 100px !important;
+        height: 100px !important;
+      }
+
+      #galeriaScroll img {
+        min-width: 180px !important;
+        width: 180px !important;
+        height: 240px !important;
+      }
+
+      .letter {
+        padding: 24px;
+      }
+
+      .btn {
+        padding: 12px 22px;
+        font-size: 0.95rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .subtitle,
+      .quote {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 60px 16px;
+      }
+
+      .hero img {
+        width: 220px !important;
+        height: 220px !important;
+      }
+
+      .container {
+        padding: 0 10px;
+      }
+
+      footer {
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 2.6rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .letter {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav style="position: sticky; top: 0; z-index: 1000; background: rgba(250,247,242,0.95); backdrop-filter: blur(8px); padding: 18px 20px; border-bottom: 1px solid rgba(184,159,122,0.15);">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+      <a href="#historia" style="text-decoration: none; color: #5c4630; font-weight: 500;">Nossa História</a>
+      <a href="#galeria" style="text-decoration: none; color: #5c4630; font-weight: 500;">Galeria</a>
+      <a href="#carta" style="text-decoration: none; color: #5c4630; font-weight: 500;">Carta</a>
+      <a href="#musicas" style="text-decoration: none; color: #5c4630; font-weight: 500;">Músicas</a>
+      <a href="#final" style="text-decoration: none; color: #5c4630; font-weight: 500;">Final</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Talyssa Mayra ❤️</h1>
+      <img src="fotos/talyssa.jpeg" alt="Nossa foto" style="width: 260px; height: 260px; object-fit: cover; border-radius: 50%; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);" />
+
+      <p class="subtitle">
+        Desde que você entrou na minha vida, tudo começou a fazer mais sentido.
+      </p>
+
+      <p class="quote">
+        “Talvez a gente não tenha sido feito para o mesmo momento…<br>
+        mas isso não significa que não seja para o mesmo destino.”
+      </p>
+
+      <a href="#historia" class="btn">Nossa História</a>
+    </div>
+  </section>
+
+  <section id="historia">
+    <h2>Nossos Momentos</h2>
+
+    <div class="timeline">
+      
+
+      <div class="timeline-item" style="display:flex; align-items:center; gap:20px;">
+        <img src="./fotos/momento2.jpeg" alt="Momento 2" onclick="abrirImagem(this.src)" style="width:120px; height:120px; object-fit:cover; border-radius:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); cursor:pointer;" alt="Momento 2" style="width:120px; height:120px; object-fit:cover; border-radius:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
+        <div>
+          <h3>Início de Outubro</h3>
+          <p>Nos vimos pessoalmente pela primeira vez — e ali eu soube que havia algo diferente.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" style="display:flex; align-items:center; gap:20px;">
+        <img src="./fotos/momento3.jpeg" alt="Momento 3" onclick="abrirImagem(this.src)" style="width:120px; height:120px; object-fit:cover; border-radius:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); cursor:pointer;" alt="Momento 3" style="width:120px; height:120px; object-fit:cover; border-radius:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
+        <div>
+          <h3>Primeiro Date</h3>
+          <p>As conversas, os sorrisos, os silêncios bons e tudo aquilo que só nós entendemos.</p>
+        </div>
+      </div>
+          <div class="timeline-item" style="display:flex; align-items:center; gap:20px;">
+        <img src="./fotos/momento4.jpeg" alt="Momento 4" onclick="abrirImagem(this.src)" style="width:120px; height:120px; object-fit:cover; border-radius:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); cursor:pointer;" alt="Momento 4" style="width:120px; height:120px; object-fit:cover; border-radius:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
+        <div>
+          <h3>Nosso Primeiro Passeio</h3>
+          <p>Um momento simples, mas que se tornou uma lembrança especial que guardo com carinho.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" style="display:flex; align-items:center; gap:20px;">
+        <img src="./fotos/momento5.jpeg" alt="Momento 5" onclick="abrirImagem(this.src)" style="width:120px; height:120px; object-fit:cover; border-radius:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); cursor:pointer;" alt="Momento 5" style="width:120px; height:120px; object-fit:cover; border-radius:18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);" />
+        <div>
+          <h3>Nosso Primeiro Dia do Ano Juntos</h3>
+          <p>Começar um novo ano ao seu lado fez tudo parecer ainda mais bonito e cheio de significado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <h2>Nossa Galeria 📸</h2>
+
+    <div style="max-width: 1100px; margin: 0 auto; display:flex; align-items:center; gap:15px; padding: 0 20px;">
+      <button onclick="rolarGaleria(-1)" class="btn" style="padding:10px 18px;">◀</button>
+
+      <div id="galeriaScroll" style="display:flex; gap:20px; overflow-x:auto; scroll-behavior:smooth; scrollbar-width:none; flex:1;"> 📸</h2>
+
+    
+      <img src="./fotos/foto1.jpeg" alt="Foto 1" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto2.jpeg" alt="Foto 2" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto3.jpeg" alt="Foto 3" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto4.jpeg" alt="Foto 4" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto5.jpeg" alt="Foto 5" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto6.jpeg" alt="Foto 6" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto7.jpeg" alt="Foto 7" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto8.jpeg" alt="Foto 8" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto9.jpeg" alt="Foto 9" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto10.jpeg" alt="Foto 10" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto11.jpeg" alt="Foto 11" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      <img src="./fotos/foto12.jpeg" alt="Foto 12" onclick="abrirImagem(this.src)" style="min-width:220px; width:220px; height:280px; border-radius:18px; object-fit:cover; box-shadow: 0 8px 24px rgba(0,0,0,0.06); cursor:pointer;" />
+      </div>
+
+      <button onclick="rolarGaleria(1)" class="btn" style="padding:10px 18px;">▶</button>
+    </div>
+  </section>
+
+  <section id="carta">
+    <h2>Uma Carta Para Você</h2>
+
+    <div class="letter">
+      <p>
+        Nem sempre o tempo escolhe o momento perfeito, mas às vezes ele apenas apresenta a pessoa certa.
+      </p>
+      <br>
+      <p>
+        Você chegou de uma forma inesperada, mas profundamente marcante. E desde então,
+        cada detalhe passou a ter mais significado.
+      </p>
+      <br>
+      <p>
+        Talvez a vida tenha seus próprios caminhos, seus próprios atrasos e seus próprios planos.
+        Mas se existir destino, eu gosto de pensar que ele, em algum momento, sempre apontou para você.
+      </p>
+      <br>
+      <p>
+        Esse site não é apenas uma homenagem. É uma forma simples de dizer que você é importante,
+        especial e inesquecível.
+      </p>
+      <br>
+      <p>
+        E se for para caminhar em direção a algo bonito…
+        eu espero que seja ao seu lado.
+      </p>
+    </div>
+  </section>
+
+  <section id="musicas">
+    <h2>Músicas Que Me Lembram Você 🎵</h2>
+
+    <div class="letter" style="text-align:center;">
+      <img src="./fotos/twentyonepilots.jpg" alt="Twenty One Pilots" style="width:220px; height:220px; object-fit:cover; border-radius:20px; margin-bottom:25px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);" />
+
+      <p style="font-size:1.1rem; font-style:italic; color:#5c4630; margin-bottom:25px;">
+        Com certeza é Twenty One Pilots.
+      </p>
+
+      <p>1. Smithereens – Twenty One Pilots</p>
+      <br>
+      <p>2. Heavydirtysoul – Twenty One Pilots</p>
+      <br>
+      <p>3. Nico and the Niners – Twenty One Pilots</p>
+      <br>
+      <p>4. Bandito – Twenty One Pilots</p>
+      <br>
+      <p>5. Jumpsuit – Twenty One Pilots</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>10 Motivos Pelos Quais Eu Te Amo ❤️</h2>
+
+    <div class="letter">
+      <p>1. Seu jeito — porque existe algo em você que torna tudo mais leve.</p>
+      <br>
+      <p>2. Sua calma — porque sua paz também acalma o meu coração.</p>
+      <br>
+      <p>3. Seu sorriso — porque ele consegue mudar completamente o meu dia.</p>
+      <br>
+      <p>4. Sua força — porque admiro a mulher incrível que você é.</p>
+      <br>
+      <p>5. Sua presença — porque até o silêncio fica melhor quando é com você.</p>
+      <br>
+      <p>6. Sua persistência — porque sua determinação inspira quem está perto.</p>
+      <br>
+      <p>7. Seu cuidado — porque você demonstra amor até nos pequenos detalhes.</p>
+      <br>
+      <p>8. Sua parceria — porque caminhar ao seu lado faz tudo parecer mais possível.</p>
+      <br>
+      <p>9. Seu carinho — porque ele aquece até os dias mais difíceis.</p>
+      <br>
+      <p>10. Sua preocupação — porque ela mostra o quanto seu coração é verdadeiro.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Nosso Tempo Juntos ⏳</h2>
+    <div class="letter" style="text-align:center;">
+      <p id="contador" style="font-size: 1.2rem;">
+        Estamos escrevendo nossa história...
+      </p>
+    </div>
+  </section>
+
+  <section id="final" class="final">
+    <h2>Isso é só o começo ✨</h2>
+    <p>
+      Ainda temos muitos capítulos para escrever.
+    </p>
+
+    <p style="margin-top: 25px; font-size: 1.2rem; font-style: italic; color: #5c4630; max-width: 700px; margin-left: auto; margin-right: auto;">
+      Entre todos os caminhos, eu escolheria você outra vez.
+    </p>
+
+    <p>
+    </p>
+
+    <button class="btn" onclick="surpresa()" style="cursor:pointer; margin-top:30px;">
+      Clique aqui se você me ama ❤️
+    </button>
+  </section>
+
+  <section style="padding-top: 20px;">
+    <div style="text-align:center; max-width:700px; margin:0 auto;">
+      <p style="font-size:1.1rem; color:#6a5656; font-style:italic;">
+        Algumas histórias não começam no tempo certo…
+        começam na pessoa certa.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Feito com carinho ❤️
+  </footer>
+
+  <script>
+    const inicio = new Date("2025-10-01T00:00:00");
+
+    function atualizarContador() {
+      const agora = new Date();
+      const diferenca = agora - inicio;
+
+      const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+      const segundos = Math.floor((diferenca / 1000) % 60);
+
+      document.getElementById("contador").innerText =
+        `Estamos escrevendo nossa história há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos ❤️`;
+    }
+
+    function rolarGaleria(direcao) {
+      const galeria = document.getElementById("galeriaScroll");
+      galeria.scrollBy({ left: direcao * 300, behavior: "smooth" });
+    }
+
+    function abrirImagem(src) {
+      const janela = document.createElement("div");
+      janela.style.position = "fixed";
+      janela.style.top = "0";
+      janela.style.left = "0";
+      janela.style.width = "100%";
+      janela.style.height = "100%";
+      janela.style.background = "rgba(0,0,0,0.85)";
+      janela.style.display = "flex";
+      janela.style.alignItems = "center";
+      janela.style.justifyContent = "center";
+      janela.style.zIndex = "9999";
+      janela.style.cursor = "pointer";
+
+      const img = document.createElement("img");
+      img.src = src;
+      img.style.maxWidth = "90%";
+      img.style.maxHeight = "90%";
+      img.style.borderRadius = "20px";
+      img.style.boxShadow = "0 10px 40px rgba(255,255,255,0.15)";
+
+      janela.appendChild(img);
+      document.body.appendChild(janela);
+
+      janela.onclick = function () {
+        janela.remove();
+      };
+    }
+
+    function surpresa() {
+      const janela = document.createElement("div");
+      janela.style.position = "fixed";
+      janela.style.top = "0";
+      janela.style.left = "0";
+      janela.style.width = "100%";
+      janela.style.height = "100%";
+      janela.style.background = "rgba(0,0,0,0.75)";
+      janela.style.display = "flex";
+      janela.style.alignItems = "center";
+      janela.style.justifyContent = "center";
+      janela.style.zIndex = "9999";
+      janela.style.padding = "20px";
+
+      const carta = document.createElement("div");
+      carta.style.maxWidth = "700px";
+      carta.style.background = "white";
+      carta.style.padding = "40px";
+      carta.style.borderRadius = "24px";
+      carta.style.boxShadow = "0 15px 40px rgba(0,0,0,0.15)";
+      carta.style.textAlign = "center";
+      carta.style.lineHeight = "1.8";
+
+      carta.innerHTML = `
+        <h2 style="margin-bottom:20px; color:#5c4630;">Uma Carta Secreta Para Você ❤️</h2>
+        <p style="color:#4a3a3a; font-size:1.05rem;">
+          Se existe algo que eu tenho certeza, é que algumas pessoas chegam na nossa vida
+          não por acaso, mas porque deveriam estar ali.
+          <br><br>
+          Você se tornou uma dessas certezas bonitas.
+          Cada conversa, cada detalhe e cada momento ao seu lado fez tudo ganhar mais significado.
+          <br><br>
+          Entre tantas possibilidades, eu ainda escolheria você.
+          Entre tantos caminhos, eu ainda caminharia até você.
+          <br><br>
+          E se isso tudo for só o começo… então eu mal posso esperar pelos próximos capítulos.
+        </p>
+        <button onclick="this.parentElement.parentElement.remove()" class="btn" style="margin-top:25px; cursor:pointer;">Fechar ❤️</button>
+      `;
+
+      janela.appendChild(carta);
+      document.body.appendChild(janela);
+
+      for (let i = 0; i < 20; i++) {
+        const coracao = document.createElement("div");
+        coracao.innerHTML = "❤️";
+        coracao.style.position = "fixed";
+        coracao.style.left = Math.random() * 100 + "vw";
+        coracao.style.top = "-20px";
+        coracao.style.fontSize = "24px";
+        coracao.style.animation = "cair 4s linear forwards";
+        document.body.appendChild(coracao);
+
+        setTimeout(() => coracao.remove(), 4000);
+      }
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+  </script>
+
+  <style>
+    @keyframes cair {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
