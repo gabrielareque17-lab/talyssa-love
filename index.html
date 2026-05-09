@@ -793,30 +793,94 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
-      nav { padding: 0 16px; }
-      .nav-inner { gap: 16px; }
-      nav a { font-size: 0.75rem; letter-spacing: 0.1em; }
-      .hero-photo { width: 170px; height: 170px; }
-      section { padding: 72px 16px; }
-      h2 { margin-bottom: 40px; }
-      .carta-wrap { padding: 36px 24px; }
-      .timeline::before { display: none; }
-      .tl-item { flex-direction: column; align-items: center; text-align: center; }
-      .tl-dot { display: none; }
-      .gallery-track img { min-width: 160px; width: 160px; height: 214px; }
-      .music-inner { grid-template-columns: 1fr; gap: 28px; text-align: center; }
-      .music-cover { margin: 0 auto; }
-      .livro-inner { grid-template-columns: 1fr; gap: 36px; text-align: center; }
-      .livro-cover { max-width: 190px; transform: none; }
-      #livro .eyebrow, #livro h2 { text-align: center; }
-      .livro-sinopse { border-left: none; border-top: 1px solid rgba(184,92,74,0.2); padding-left: 0; padding-top: 20px; }
-      .reasons-grid { grid-template-columns: 1fr; }
-      .timer-grid { gap: 12px; }
-      .t-unit { min-width: 90px; padding: 22px 18px 16px; }
-      .t-num { font-size: 2.4rem; }
-      .modal-box { padding: 36px 24px; }
+      /* Cursor off */
       * { cursor: auto !important; }
       #cursor, #cursor-ring { display: none; }
+
+      /* Nav */
+      nav { padding: 0 12px; height: 56px; }
+      .nav-inner { gap: 14px; }
+      nav a { font-size: 0.72rem; letter-spacing: 0.08em; }
+
+      /* Hero */
+      .hero { padding: 90px 20px 60px; }
+      .hero-photo { width: 160px; height: 160px; }
+      h1 { font-size: 2.8rem; }
+      .hero-sub { font-size: 0.97rem; }
+      .hero-quote { font-size: 0.98rem; padding: 16px 20px; }
+      .btn { padding: 12px 26px; font-size: 0.78rem; }
+
+      /* Sections */
+      section { padding: 64px 16px; }
+      h2 { font-size: 2rem; margin-bottom: 36px; }
+      .eyebrow { font-size: 0.68rem; }
+
+      /* Timeline */
+      .timeline::before { display: none; }
+      .tl-item { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+      .tl-dot { display: none; }
+      .tl-img { width: 120px; height: 120px; }
+      .tl-text h3 { font-size: 1.1rem; }
+
+      /* Gallery */
+      .gallery-track img { min-width: 150px; width: 150px; height: 200px; }
+      .gal-btn { width: 36px; height: 36px; font-size: 0.75rem; }
+
+      /* Carta */
+      .carta-wrap { padding: 32px 20px; }
+      .carta-wrap p { font-size: 1.05rem; }
+
+      /* Razões */
+      .reasons-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .r-card { padding: 20px 16px; }
+      .r-num { font-size: 2.2rem; }
+
+      /* Músicas */
+      .music-inner { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+      .music-cover { margin: 0 auto; width: 140px; height: 140px; }
+      .song-list li { font-size: 0.88rem; padding: 11px 0; }
+
+      /* Timer */
+      .timer-grid { gap: 10px; }
+      .t-unit { min-width: 76px; padding: 18px 12px 14px; }
+      .t-num { font-size: 2rem; }
+      .t-label { font-size: 0.62rem; }
+
+      /* Mensagem do dia */
+      .msg-envelope { padding: 28px 22px; }
+      .msg-text { font-size: 1.15rem; min-height: 60px; }
+      .msg-day-badge { font-size: 0.65rem; }
+
+      /* Livro */
+      .livro-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .livro-cover { max-width: 170px; transform: none; }
+      #livro .eyebrow, #livro h2 { text-align: center; }
+      .livro-sinopse { border-left: none; border-top: 1px solid rgba(184,92,74,0.2); padding-left: 0; padding-top: 18px; font-size: 1rem; }
+      .livro-autor { text-align: center; }
+
+      /* Final */
+      #final { padding: 80px 20px; }
+      #final h2 { font-size: 2rem; }
+      .final-q { font-size: 1.1rem !important; }
+
+      /* Modal */
+      .modal-box { padding: 32px 20px; }
+      .modal-box h2 { font-size: 1.6rem; }
+      .modal-box p { font-size: 0.97rem; }
+
+      /* Loader */
+      .loader-name { font-size: clamp(3rem, 16vw, 5rem); }
+
+      /* Footer */
+      footer { font-size: 0.78rem; padding: 22px 16px; }
+    }
+
+    @media (max-width: 400px) {
+      .reasons-grid { grid-template-columns: 1fr; }
+      .timer-grid { gap: 8px; }
+      .t-unit { min-width: 68px; padding: 14px 10px 12px; }
+      .t-num { font-size: 1.7rem; }
+      nav a { font-size: 0.68rem; letter-spacing: 0.05em; }
     }
   </style>
 </head>
@@ -1069,7 +1133,7 @@
   <!-- FINAL -->
   <section id="final">
     <p class="eyebrow reveal">Ainda Há Mais</p>
-    <h2 class="reveal">Isso é só o <em>começo</em> ✨</h2>
+    <h2 class="reveal">Isso é só o <em>começo</em></h2>
     <p class="reveal">Ainda temos muitos capítulos para escrever.</p>
     <p class="final-q reveal">"Entre todos os caminhos, eu escolheria você outra vez."</p>
     <button class="btn btn-white reveal" onclick="surpresa()"><span>Clique aqui se você me ama ❤️</span></button>
