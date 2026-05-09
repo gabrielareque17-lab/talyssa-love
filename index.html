@@ -6,560 +6,854 @@
   <title>Talyssa Mayra ❤️</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --cream: #fdf8f0;
-      --blush: #f2e0d5;
-      --rose: #c97b6a;
-      --deep: #3a2820;
-      --warm: #8a5c4a;
-      --gold: #c9a96e;
-      --text: #4a3228;
-      --muted: #9a7a6e;
-      --white: #fffefb;
+      --ink:    #1c1410;
+      --parch:  #f7f0e6;
+      --blush:  #e8cfc4;
+      --rose:   #b85c4a;
+      --gold:   #c8995a;
+      --sage:   #7a9e7e;
+      --smoke:  #6b5c54;
+      --paper:  #fdf8f2;
+      --card:   #fffcf7;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      background: var(--parch);
+      color: var(--ink);
       overflow-x: hidden;
-      line-height: 1.6;
+    }
+
+    /* ── CURSOR ── */
+    * { cursor: none !important; }
+    #cursor {
+      width: 10px; height: 10px;
+      background: var(--rose);
+      border-radius: 50%;
+      position: fixed; z-index: 99999;
+      pointer-events: none;
+      transition: transform 0.15s ease, opacity 0.2s;
+      mix-blend-mode: multiply;
+    }
+    #cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid rgba(184,92,74,0.4);
+      border-radius: 50%;
+      position: fixed; z-index: 99998;
+      pointer-events: none;
+      transition: transform 0.4s ease, width 0.3s, height 0.3s, border-color 0.3s;
+    }
+
+    /* ── PARTICLES CANVAS ── */
+    #particles {
+      position: fixed; inset: 0;
+      z-index: 0; pointer-events: none;
+      opacity: 0.45;
     }
 
     /* ── NAV ── */
     nav {
-      position: sticky;
-      top: 0;
+      position: fixed; top: 0; width: 100%;
       z-index: 1000;
-      background: rgba(253,248,240,0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 16px 24px;
-      border-bottom: 1px solid rgba(201,121,106,0.12);
-      transition: box-shadow 0.3s;
+      padding: 0 40px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.4s, box-shadow 0.4s;
     }
-    nav.scrolled { box-shadow: 0 4px 24px rgba(58,40,32,0.07); }
+    nav.scrolled {
+      background: rgba(247,240,230,0.94);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 1px 0 rgba(184,92,74,0.1), 0 8px 32px rgba(28,20,16,0.06);
+    }
     .nav-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
+      display: flex; gap: 36px; align-items: center; flex-wrap: wrap; justify-content: center;
     }
     nav a {
       text-decoration: none;
-      color: var(--warm);
-      font-size: 0.85rem;
+      color: var(--smoke);
+      font-size: 0.78rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       position: relative;
-      padding-bottom: 3px;
+      padding-bottom: 2px;
       transition: color 0.3s;
     }
     nav a::after {
       content: '';
-      position: absolute;
-      bottom: 0; left: 0;
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
       width: 0; height: 1px;
       background: var(--rose);
-      transition: width 0.3s ease;
+      transition: width 0.35s ease;
     }
     nav a:hover { color: var(--rose); }
     nav a:hover::after { width: 100%; }
 
-    /* ── SCROLL REVEAL ── */
+    /* ── REVEAL ── */
     .reveal {
       opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(44px);
+      transition: opacity 0.85s cubic-bezier(.16,1,.3,1), transform 0.85s cubic-bezier(.16,1,.3,1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity:0; transform:translateX(-48px); transition: opacity 0.85s cubic-bezier(.16,1,.3,1), transform 0.85s cubic-bezier(.16,1,.3,1); }
+    .reveal-right { opacity:0; transform:translateX(48px);  transition: opacity 0.85s cubic-bezier(.16,1,.3,1), transform 0.85s cubic-bezier(.16,1,.3,1); }
+    .reveal-left.visible, .reveal-right.visible { opacity:1; transform:translateX(0); }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(to bottom, #fffdf9, #f5ede2);
+      padding: 100px 24px 80px;
+      position: relative; overflow: hidden;
+      background: radial-gradient(ellipse 100% 80% at 50% -10%, #f0ddd4 0%, var(--parch) 55%);
     }
+
+    /* diagonal decorative lines */
     .hero::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(242,224,213,0.8) 0%, transparent 60%);
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 60px,
+          rgba(184,92,74,0.025) 60px,
+          rgba(184,92,74,0.025) 61px
+        );
+      z-index: 0;
     }
-    .hero-content { position: relative; z-index: 1; max-width: 750px; margin: 0 auto; }
+
+    .hero-content { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
 
     .hero-eyebrow {
-      font-size: 0.78rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--rose);
-      margin-bottom: 22px;
-      opacity: 0;
-      animation: slideUp 0.8s ease 0.2s forwards;
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--rose); margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.9s ease 0.3s forwards;
     }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; flex: 1; height: 1px; width: 40px;
+      background: linear-gradient(to right, transparent, var(--rose));
+    }
+    .hero-eyebrow::after { background: linear-gradient(to left, transparent, var(--rose)); }
 
-    .hero-photo-wrap {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 34px;
-      opacity: 0;
-      animation: fadeIn 1s ease 0.4s forwards;
+    .photo-frame {
+      position: relative; display: inline-block;
+      margin-bottom: 40px;
+      opacity: 0; animation: scaleIn 1s cubic-bezier(.16,1,.3,1) 0.5s forwards;
     }
-    .hero-photo-wrap::before {
+    .photo-frame::before {
       content: '';
-      position: absolute;
-      inset: -5px;
+      position: absolute; inset: -8px;
       border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--rose), var(--gold), var(--blush), var(--rose));
+      background: conic-gradient(from 0deg, var(--rose) 0%, var(--gold) 35%, var(--blush) 60%, var(--rose) 100%);
+      animation: spin 10s linear infinite;
       z-index: 0;
-      animation: spin 8s linear infinite;
     }
-    .hero-photo-wrap::after {
+    .photo-frame::after {
       content: '';
-      position: absolute;
-      inset: 0px;
+      position: absolute; inset: 0px;
       border-radius: 50%;
-      background: var(--cream);
+      background: var(--parch);
       z-index: 0;
     }
     .hero-photo {
-      width: 240px; height: 240px;
-      object-fit: cover;
-      border-radius: 50%;
+      width: 230px; height: 230px;
+      object-fit: cover; border-radius: 50%;
+      position: relative; z-index: 1;
       display: block;
-      position: relative;
-      z-index: 1;
     }
 
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 8vw, 5rem);
-      font-weight: 700;
-      color: var(--deep);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 18px;
-      opacity: 0;
-      animation: slideUp 0.8s ease 0.6s forwards;
+      font-family: 'Cormorant', serif;
+      font-size: clamp(3.2rem, 9vw, 6rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.9s ease 0.7s forwards;
     }
+    h1 em { font-style: italic; color: var(--rose); }
 
     .hero-sub {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 540px;
-      margin: 0 auto 24px;
-      line-height: 1.7;
-      opacity: 0;
-      animation: slideUp 0.8s ease 0.8s forwards;
+      font-size: 1.05rem; font-weight: 300;
+      color: var(--smoke); max-width: 500px;
+      margin: 0 auto 28px; line-height: 1.75;
+      opacity: 0; animation: fadeUp 0.9s ease 0.9s forwards;
     }
 
     .hero-quote {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--warm);
-      max-width: 600px;
-      margin: 0 auto 34px;
-      line-height: 1.8;
-      padding: 18px 0;
-      border-top: 1px solid rgba(201,121,106,0.2);
-      border-bottom: 1px solid rgba(201,121,106,0.2);
-      opacity: 0;
-      animation: slideUp 0.8s ease 1s forwards;
+      font-family: 'Cormorant', serif; font-style: italic;
+      font-size: 1.15rem; color: var(--smoke);
+      max-width: 580px; margin: 0 auto 38px;
+      line-height: 1.85;
+      padding: 20px 28px;
+      border: 1px solid rgba(184,92,74,0.2);
+      border-radius: 2px;
+      position: relative;
+      opacity: 0; animation: fadeUp 0.9s ease 1.1s forwards;
+    }
+    .hero-quote::before {
+      content: '"';
+      font-size: 5rem; line-height: 1;
+      color: rgba(184,92,74,0.12);
+      position: absolute; top: -10px; left: 12px;
+      font-family: 'Cormorant', serif;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 30px;
-      border: 1.5px solid var(--rose);
-      color: var(--rose);
-      text-decoration: none;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      transition: all 0.3s ease;
-      background: transparent;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      opacity: 0;
-      animation: slideUp 0.8s ease 1.2s forwards;
-    }
-    .btn:hover {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 34px;
       background: var(--rose);
       color: white;
-      box-shadow: 0 8px 24px rgba(201,121,106,0.3);
-      transform: translateY(-2px);
+      text-decoration: none; border: none;
+      border-radius: 2px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      transition: all 0.35s ease;
+      position: relative; overflow: hidden;
+      cursor: none !important;
+      opacity: 0; animation: fadeUp 0.9s ease 1.3s forwards;
     }
-    .btn-static {
-      opacity: 1 !important;
-      animation: none !important;
+    .btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--ink);
+      transform: translateX(-101%);
+      transition: transform 0.35s ease;
     }
-
-    /* ── SECTIONS ── */
-    section { padding: 96px 24px; }
-
-    .section-label {
-      text-align: center;
-      font-size: 0.75rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
+    .btn span { position: relative; z-index: 1; }
+    .btn:hover::before { transform: translateX(0); }
+    .btn:hover { box-shadow: 0 8px 28px rgba(28,20,16,0.2); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid var(--rose);
       color: var(--rose);
-      margin-bottom: 12px;
-      font-weight: 500;
+      opacity: 1 !important; animation: none !important;
     }
+    .btn-ghost::before { background: var(--rose); }
+    .btn-ghost:hover { color: white; }
+    .btn-white {
+      background: white; color: var(--ink);
+      border: none; opacity: 1 !important; animation: none !important;
+    }
+    .btn-white::before { background: var(--rose); }
+    .btn-white:hover { color: white; }
 
+    /* ── SECTION SHARED ── */
+    section { padding: 108px 24px; position: relative; z-index: 1; }
+
+    .eyebrow {
+      text-align: center; font-size: 0.72rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--rose); margin-bottom: 14px; font-weight: 500;
+    }
     h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 5vw, 3rem);
-      text-align: center;
-      margin-bottom: 56px;
-      color: var(--deep);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
+      font-family: 'Cormorant', serif;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 300;
+      text-align: center; margin-bottom: 64px;
+      color: var(--ink); line-height: 1.15;
+      letter-spacing: -0.01em;
     }
+    h2 em { font-style: italic; color: var(--rose); }
 
-    /* ── TIMELINE ── */
-    #historia { background: var(--white); }
-    .timeline { max-width: 660px; margin: 0 auto; position: relative; }
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin: 0 auto 64px; max-width: 300px;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(184,92,74,0.3));
+    }
+    .divider::after { background: linear-gradient(to left, transparent, rgba(184,92,74,0.3)); }
+    .divider span { color: var(--rose); font-size: 0.7rem; }
+
+    /* ── HISTORIA ── */
+    #historia { background: var(--paper); }
+
+    .timeline { max-width: 680px; margin: 0 auto; position: relative; }
     .timeline::before {
       content: '';
-      position: absolute;
-      left: 57px; top: 0; bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(201,121,106,0.25) 10%, rgba(201,121,106,0.25) 90%, transparent);
+      position: absolute; left: 52px; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(184,92,74,0.2) 8%, rgba(184,92,74,0.2) 92%, transparent);
     }
-    .timeline-item {
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      padding: 26px 0;
-      position: relative;
-    }
-    .timeline-item + .timeline-item { border-top: 1px solid rgba(201,121,106,0.08); }
-    .t-img-wrap { flex-shrink: 0; position: relative; }
-    .t-img-wrap::after {
-      content: '';
-      position: absolute;
-      right: -13px; top: 50%;
-      transform: translateY(-50%);
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--rose);
-      box-shadow: 0 0 0 3px var(--white), 0 0 0 5px rgba(201,121,106,0.2);
-    }
-    .t-img {
-      width: 96px; height: 96px;
-      object-fit: cover;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: block;
-    }
-    .t-img:hover { transform: scale(1.06); box-shadow: 0 10px 28px rgba(58,40,32,0.14); }
-    .t-text h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--deep);
-      margin-bottom: 7px;
-    }
-    .t-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
 
-    /* ── GALLERY ── */
-    #galeria { background: var(--cream); }
-    .gallery-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 10px;
+    .tl-item {
+      display: flex; gap: 28px; align-items: flex-start;
+      padding: 30px 0; position: relative;
     }
-    .gallery-btn {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(201,121,106,0.35);
-      background: white;
-      color: var(--rose);
+    .tl-item + .tl-item { border-top: 1px solid rgba(184,92,74,0.07); }
+
+    .tl-img-wrap { flex-shrink: 0; position: relative; }
+    .tl-dot {
+      position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 0 3px var(--paper), 0 0 0 5px rgba(184,92,74,0.25);
+    }
+    .tl-img {
+      width: 90px; height: 90px; object-fit: cover;
+      border-radius: 4px; display: block; cursor: none;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 4px 4px 0 rgba(184,92,74,0.15);
+    }
+    .tl-img:hover { transform: scale(1.07) rotate(-1deg); box-shadow: 8px 8px 0 rgba(184,92,74,0.2); }
+
+    .tl-text { padding-top: 4px; }
+    .tl-date { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose); margin-bottom: 8px; font-weight: 500; }
+    .tl-text h3 { font-family: 'Cormorant', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 8px; }
+    .tl-text p { color: var(--smoke); font-size: 0.95rem; line-height: 1.65; font-weight: 300; }
+
+    /* ── GALERIA ── */
+    #galeria { background: var(--parch); }
+
+    .gallery-outer {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; gap: 16px; padding: 0 8px;
+    }
+    .gal-btn {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border-radius: 50%; border: 1.5px solid rgba(184,92,74,0.3);
+      background: var(--card); color: var(--rose);
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: all 0.3s;
-      font-size: 0.95rem;
+      cursor: none !important;
+      transition: all 0.3s ease; font-size: 0.85rem;
     }
-    .gallery-btn:hover { background: var(--rose); color: white; border-color: var(--rose); box-shadow: 0 4px 14px rgba(201,121,106,0.3); }
+    .gal-btn:hover { background: var(--rose); color: white; border-color: var(--rose); transform: scale(1.1); }
     .gallery-track {
-      display: flex; gap: 14px;
+      display: flex; gap: 16px;
       overflow-x: auto; scroll-behavior: smooth;
-      scrollbar-width: none; flex: 1;
-      padding: 8px 0 16px;
+      scrollbar-width: none; flex: 1; padding: 12px 0 20px;
     }
     .gallery-track::-webkit-scrollbar { display: none; }
     .gallery-track img {
-      min-width: 200px; width: 200px; height: 268px;
-      object-fit: cover; border-radius: 14px; cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 14px rgba(58,40,32,0.07);
+      min-width: 210px; width: 210px; height: 280px;
+      object-fit: cover;
+      border-radius: 3px;
+      cursor: none !important;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 4px 0 rgba(184,92,74,0.12), 0 8px 24px rgba(28,20,16,0.08);
     }
-    .gallery-track img:hover { transform: scale(1.04) translateY(-4px); box-shadow: 0 14px 32px rgba(58,40,32,0.13); }
+    .gallery-track img:hover { transform: translateY(-8px) rotate(0.5deg); box-shadow: 0 4px 0 rgba(184,92,74,0.2), 0 20px 40px rgba(28,20,16,0.14); }
 
-    /* ── LETTER ── */
+    /* ── CARTA ── */
     #carta { background: var(--blush); }
-    .letter-card {
-      max-width: 720px; margin: 0 auto;
-      background: var(--white);
-      padding: 52px;
-      border-radius: 26px;
-      box-shadow: 0 18px 56px rgba(58,40,32,0.07);
+
+    .carta-wrap {
+      max-width: 680px; margin: 0 auto;
+      background: var(--card);
+      padding: 60px 64px;
+      border-radius: 2px;
+      box-shadow: 8px 8px 0 rgba(184,92,74,0.08), 0 24px 60px rgba(28,20,16,0.07);
+      position: relative;
+    }
+    .carta-wrap::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--rose), var(--gold), var(--rose));
+    }
+    .carta-wrap p {
+      font-family: 'Cormorant', serif;
+      font-size: 1.18rem; font-weight: 300;
+      line-height: 1.95; color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .carta-wrap p:last-child { margin-bottom: 0; }
+    .carta-sig {
+      margin-top: 32px; padding-top: 24px;
+      border-top: 1px solid rgba(184,92,74,0.15);
+      font-family: 'Cormorant', serif; font-style: italic;
+      font-size: 1.05rem; color: var(--rose); text-align: right;
+    }
+
+    /* ── RAZÕES ── */
+    #razoes { background: var(--paper); }
+
+    .reasons-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .r-card {
+      background: var(--card);
+      border: 1px solid rgba(184,92,74,0.08);
+      border-radius: 2px; padding: 28px 24px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
       position: relative; overflow: hidden;
     }
-    .letter-card::before {
-      content: '❤';
-      position: absolute; top: -16px; right: -16px;
-      font-size: 130px; opacity: 0.04; color: var(--rose); line-height: 1;
+    .r-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 0;
+      background: linear-gradient(to top, rgba(184,92,74,0.04), transparent);
+      transition: height 0.4s ease;
     }
-    .letter-card p { font-size: 1.03rem; line-height: 1.85; color: var(--text); margin-bottom: 18px; }
-    .letter-card p:last-child { margin-bottom: 0; }
+    .r-card:hover::before { height: 100%; }
+    .r-card:hover { transform: translateY(-6px); box-shadow: 0 4px 0 rgba(184,92,74,0.12), 0 16px 40px rgba(28,20,16,0.09); }
+    .r-num { font-family: 'Cormorant', serif; font-size: 3rem; font-weight: 300; color: rgba(184,92,74,0.15); line-height: 1; margin-bottom: 12px; }
+    .r-card h4 { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); margin-bottom: 8px; text-transform: uppercase; }
+    .r-card p { font-size: 0.9rem; color: var(--smoke); line-height: 1.6; font-weight: 300; }
 
     /* ── MÚSICAS ── */
-    #musicas { background: var(--white); }
-    .music-card {
-      max-width: 640px; margin: 0 auto;
-      background: var(--deep);
-      border-radius: 26px; padding: 44px;
-      color: white; text-align: center;
-      position: relative; overflow: hidden;
-      box-shadow: 0 20px 56px rgba(58,40,32,0.18);
-    }
-    .music-card::before {
+    #musicas { background: var(--ink); position: relative; overflow: hidden; }
+    #musicas::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% -20%, rgba(201,121,106,0.25) 0%, transparent 60%);
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(184,92,74,0.18) 0%, transparent 60%);
     }
-    .music-card img {
-      width: 170px; height: 170px;
-      object-fit: cover; border-radius: 14px;
-      margin-bottom: 24px;
-      box-shadow: 0 14px 36px rgba(0,0,0,0.3);
+    #musicas .eyebrow { color: rgba(200,153,90,0.7); }
+    #musicas h2 { color: rgba(247,240,230,0.9); }
+
+    .music-inner {
+      max-width: 700px; margin: 0 auto;
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 52px; align-items: start;
       position: relative; z-index: 1;
     }
-    .music-band { font-family: 'Playfair Display', serif; font-style: italic; color: rgba(255,255,255,0.55); font-size: 0.97rem; margin-bottom: 24px; position: relative; z-index: 1; }
-    .song-list { list-style: none; text-align: left; position: relative; z-index: 1; }
+    .music-cover {
+      width: 180px; height: 180px; object-fit: cover;
+      border-radius: 3px;
+      box-shadow: 8px 8px 0 rgba(184,92,74,0.3), 0 20px 48px rgba(0,0,0,0.4);
+    }
+    .music-band { font-family: 'Cormorant', serif; font-style: italic; color: rgba(247,240,230,0.45); font-size: 0.97rem; margin-bottom: 24px; }
+    .song-list { list-style: none; }
     .song-list li {
-      display: flex; align-items: center; gap: 14px;
-      padding: 13px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      font-size: 0.95rem; color: rgba(255,255,255,0.82);
-      transition: color 0.2s;
+      display: flex; align-items: center; gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(247,240,230,0.06);
+      font-size: 0.93rem; color: rgba(247,240,230,0.75);
+      font-weight: 300;
+      transition: color 0.25s, padding-left 0.3s;
     }
     .song-list li:last-child { border-bottom: none; }
-    .song-list li:hover { color: var(--rose); }
-    .song-num { font-family: 'Playfair Display', serif; font-size: 0.78rem; color: var(--rose); min-width: 18px; }
-
-    /* ── 10 RAZÕES ── */
-    #razoes { background: var(--cream); }
-    .reasons-grid {
-      max-width: 860px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 18px;
-    }
-    .reason-card {
-      background: var(--white);
-      border: 1px solid rgba(201,121,106,0.1);
-      border-radius: 18px; padding: 26px 22px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .reason-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(58,40,32,0.08); }
-    .reason-num { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: rgba(201,121,106,0.22); font-weight: 700; line-height: 1; margin-bottom: 9px; }
-    .reason-card h4 { font-size: 0.97rem; font-weight: 600; color: var(--deep); margin-bottom: 7px; }
-    .reason-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.55; }
+    .song-list li:hover { color: var(--gold); padding-left: 6px; }
+    .song-num { font-family: 'Cormorant', serif; font-size: 0.78rem; color: var(--rose); min-width: 18px; font-weight: 400; }
 
     /* ── CONTADOR ── */
-    #contador-section { background: var(--blush); }
-    .counter-grid {
-      display: flex; justify-content: center;
-      gap: 16px; flex-wrap: wrap; margin-top: 8px;
+    #timer { background: var(--blush); }
+    .timer-grid { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .t-unit {
+      background: var(--card); border-radius: 2px;
+      padding: 30px 28px 22px; min-width: 114px; text-align: center;
+      box-shadow: 4px 4px 0 rgba(184,92,74,0.1), 0 8px 28px rgba(28,20,16,0.05);
+      transition: transform 0.3s ease;
     }
-    .counter-unit {
-      background: var(--white); border-radius: 18px;
-      padding: 26px 22px 18px; min-width: 106px;
-      box-shadow: 0 6px 24px rgba(58,40,32,0.06);
-      text-align: center;
-    }
-    .counter-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: var(--deep); line-height: 1; margin-bottom: 7px; }
-    .counter-label { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+    .t-unit:hover { transform: translateY(-4px); }
+    .t-num { font-family: 'Cormorant', serif; font-size: 3rem; font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+    .t-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--smoke); font-weight: 500; }
 
     /* ── LIVRO ── */
-    #livro {
-      background: var(--deep);
-      position: relative; overflow: hidden;
-    }
+    #livro { background: var(--ink); position: relative; overflow: hidden; }
     #livro::before {
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 70% 50% at 15% 50%, rgba(201,121,106,0.14) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 60% at 85% 50%, rgba(201,169,110,0.09) 0%, transparent 55%);
+        radial-gradient(ellipse 60% 70% at 10% 50%, rgba(200,153,90,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 60% at 90% 50%, rgba(184,92,74,0.1) 0%, transparent 55%);
     }
+
     .livro-inner {
-      max-width: 920px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 60px;
-      align-items: center;
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 280px 1fr;
+      gap: 72px; align-items: center;
       position: relative; z-index: 1;
     }
-    .livro-cover-wrap { position: relative; display: flex; justify-content: center; }
-    .livro-cover-wrap::before {
+
+    .livro-book {
+      position: relative; display: flex; justify-content: center;
+    }
+    .livro-book::before {
       content: '';
-      position: absolute; inset: -3px;
-      background: linear-gradient(135deg, var(--gold), var(--rose), var(--gold));
-      border-radius: 10px; z-index: 0; opacity: 0.65;
+      position: absolute; inset: -4px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 50%, var(--gold) 100%);
+      border-radius: 4px; z-index: 0; opacity: 0.6;
+      animation: shimmer 4s ease infinite;
+    }
+    @keyframes shimmer {
+      0%,100% { opacity: 0.5; }
+      50%      { opacity: 0.85; }
     }
     .livro-cover {
-      width: 100%; max-width: 250px;
-      border-radius: 8px; display: block;
+      width: 100%; max-width: 260px;
+      border-radius: 3px; display: block;
       position: relative; z-index: 1;
-      box-shadow: 8px 8px 0 rgba(0,0,0,0.25), 16px 16px 48px rgba(0,0,0,0.4);
-      transform: perspective(800px) rotateY(-5deg);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 12px 12px 0 rgba(0,0,0,0.3), 0 24px 60px rgba(0,0,0,0.45);
+      transform: perspective(900px) rotateY(-6deg);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
     }
     .livro-cover:hover {
-      transform: perspective(800px) rotateY(0deg) scale(1.02);
-      box-shadow: 4px 4px 0 rgba(0,0,0,0.15), 20px 20px 60px rgba(0,0,0,0.35);
+      transform: perspective(900px) rotateY(0deg) scale(1.03);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.15), 0 32px 72px rgba(0,0,0,0.4);
     }
-    .livro-text { color: white; }
-    #livro .section-label { text-align: left; color: rgba(201,121,106,0.8); }
-    #livro h2 { text-align: left; color: white; margin-bottom: 8px; font-size: clamp(1.7rem, 4vw, 2.6rem); }
-    .livro-author { font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 26px; font-weight: 500; }
+
+    .livro-text { color: rgba(247,240,230,0.9); }
+    #livro .eyebrow { text-align: left; color: rgba(200,153,90,0.7); }
+    #livro h2 { text-align: left; color: rgba(247,240,230,0.92); margin-bottom: 10px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+    .livro-autor { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; font-weight: 500; }
+
     .livro-sinopse {
-      font-size: 1rem; line-height: 1.85;
-      color: rgba(255,255,255,0.68);
-      border-left: 2px solid rgba(201,121,106,0.45);
-      padding-left: 18px;
+      font-family: 'Cormorant', serif;
+      font-size: 1.1rem; font-weight: 300; line-height: 1.9;
+      color: rgba(247,240,230,0.62);
+      border-left: 2px solid rgba(184,92,74,0.45);
+      padding-left: 20px;
     }
-    .livro-sinopse strong { color: rgba(255,255,255,0.92); font-weight: 500; }
+    .livro-sinopse strong { color: rgba(247,240,230,0.9); font-weight: 400; }
 
     /* ── FINAL ── */
     #final {
-      background: var(--deep); text-align: center; color: white;
-      padding: 110px 24px; position: relative; overflow: hidden;
+      background: var(--rose); text-align: center;
+      padding: 120px 24px; position: relative; overflow: hidden;
     }
     #final::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,121,106,0.16) 0%, transparent 70%);
+      background-image: repeating-linear-gradient(
+        45deg, transparent, transparent 40px,
+        rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px
+      );
     }
+    #final .eyebrow { color: rgba(255,255,255,0.55); position: relative; z-index: 1; }
     #final h2 { color: white; position: relative; z-index: 1; }
-    #final p { color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto 14px; font-size: 1.02rem; line-height: 1.7; position: relative; z-index: 1; }
-    .final-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem !important; color: rgba(255,255,255,0.82) !important; margin: 26px auto 42px !important; }
-    #final .btn { opacity: 1; animation: none; border-color: rgba(255,255,255,0.35); color: white; position: relative; z-index: 1; }
-    #final .btn:hover { background: var(--rose); border-color: var(--rose); }
+    #final p { color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 14px; font-size: 1rem; line-height: 1.75; position: relative; z-index: 1; font-weight: 300; }
+    .final-q {
+      font-family: 'Cormorant', serif; font-style: italic;
+      font-size: 1.35rem !important; color: rgba(255,255,255,0.9) !important;
+      margin: 28px auto 48px !important;
+    }
 
     /* ── FOOTER ── */
     footer {
-      text-align: center; padding: 30px;
-      font-size: 0.87rem; color: var(--muted);
-      background: var(--cream);
-      border-top: 1px solid rgba(201,121,106,0.1);
-      letter-spacing: 0.04em;
+      text-align: center; padding: 28px;
+      font-size: 0.8rem; color: var(--smoke);
+      background: var(--ink); letter-spacing: 0.08em;
+      border-top: 1px solid rgba(184,92,74,0.12);
     }
+    footer span { color: var(--rose); }
 
     /* ── LIGHTBOX ── */
     .lightbox {
       position: fixed; inset: 0;
-      background: rgba(18,10,6,0.92);
+      background: rgba(12,8,4,0.94);
       display: flex; align-items: center; justify-content: center;
-      z-index: 9999; cursor: pointer;
-      backdrop-filter: blur(6px);
-      animation: fadeIn 0.22s ease;
+      z-index: 99990; backdrop-filter: blur(8px);
+      animation: fadeIn 0.2s ease;
     }
-    .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 14px; box-shadow: 0 28px 70px rgba(0,0,0,0.5); cursor: default; }
-    .lightbox-close { position: absolute; top: 22px; right: 26px; color: rgba(255,255,255,0.65); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
-    .lightbox-close:hover { color: white; }
+    .lightbox img { max-width: 90vw; max-height: 88vh; border-radius: 3px; box-shadow: 0 32px 80px rgba(0,0,0,0.6); }
+    .lb-close { position: absolute; top: 24px; right: 28px; color: rgba(255,255,255,0.6); font-size: 1.4rem; cursor: none !important; transition: color 0.2s; line-height: 1; }
+    .lb-close:hover { color: white; }
 
     /* ── MODAL ── */
-    .modal-overlay {
+    .modal-bg {
       position: fixed; inset: 0;
-      background: rgba(18,10,6,0.8);
+      background: rgba(12,8,4,0.85);
       display: flex; align-items: center; justify-content: center;
-      z-index: 9999; padding: 24px;
-      backdrop-filter: blur(8px);
-      animation: fadeIn 0.28s ease;
+      z-index: 99990; padding: 24px; backdrop-filter: blur(10px);
+      animation: fadeIn 0.25s ease;
     }
-    .modal-card {
-      max-width: 620px; width: 100%;
-      background: var(--white);
-      border-radius: 26px; padding: 50px 44px;
-      text-align: center;
-      box-shadow: 0 36px 90px rgba(18,10,6,0.28);
-      animation: slideUp 0.36s ease;
+    .modal-box {
+      max-width: 600px; width: 100%;
+      background: var(--card); border-radius: 2px;
+      padding: 56px 52px; text-align: center;
+      box-shadow: 12px 12px 0 rgba(184,92,74,0.1), 0 40px 100px rgba(12,8,4,0.3);
+      animation: scaleIn 0.35s cubic-bezier(.16,1,.3,1);
+      position: relative;
     }
-    .modal-card h2 { font-size: 1.9rem; margin-bottom: 22px; color: var(--deep); }
-    .modal-card p { color: var(--text); font-size: 1rem; line-height: 1.82; margin-bottom: 30px; }
+    .modal-box::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--rose), var(--gold), var(--rose));
+    }
+    .modal-box h2 { font-family: 'Cormorant', serif; font-size: 2rem; font-weight: 300; color: var(--ink); margin-bottom: 22px; }
+    .modal-box p { font-family: 'Cormorant', serif; font-size: 1.1rem; font-weight: 300; color: var(--smoke); line-height: 1.9; margin-bottom: 30px; }
+
+    /* ── MENSAGEM DO DIA ── */
+    #mensagem-dia { background: var(--ink); position: relative; overflow: hidden; }
+    #mensagem-dia::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(184,92,74,0.12) 0%, transparent 65%);
+    }
+    #mensagem-dia .eyebrow { color: rgba(200,153,90,0.65); }
+    #mensagem-dia h2 { color: rgba(247,240,230,0.88); margin-bottom: 48px; }
+
+    .msg-card {
+      max-width: 680px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+
+    .msg-day-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); font-weight: 500; margin-bottom: 28px;
+    }
+    .msg-day-badge::before, .msg-day-badge::after {
+      content: ''; width: 28px; height: 1px;
+      background: rgba(200,153,90,0.4);
+    }
+
+    .msg-envelope {
+      background: rgba(247,240,230,0.04);
+      border: 1px solid rgba(184,92,74,0.2);
+      border-radius: 3px;
+      padding: 52px 56px;
+      position: relative; overflow: hidden;
+      cursor: none !important;
+    }
+    .msg-envelope::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, transparent, var(--rose), var(--gold), var(--rose), transparent);
+    }
+    .msg-envelope::after {
+      content: '"';
+      position: absolute; top: 10px; right: 24px;
+      font-family: 'Cormorant', serif;
+      font-size: 8rem; line-height: 1;
+      color: rgba(184,92,74,0.07);
+    }
+
+    .msg-text {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.3rem, 3vw, 1.65rem);
+      font-style: italic; font-weight: 300;
+      color: rgba(247,240,230,0.88);
+      line-height: 1.75;
+      position: relative; z-index: 1;
+      min-height: 80px;
+      transition: opacity 0.5s ease;
+    }
+    .msg-text.fade { opacity: 0; }
+
+    .msg-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 32px; padding-top: 20px;
+      border-top: 1px solid rgba(247,240,230,0.07);
+    }
+    .msg-sig {
+      font-size: 0.78rem; letter-spacing: 0.12em;
+      color: rgba(247,240,230,0.3); font-style: italic;
+      font-family: 'Cormorant', serif;
+    }
+    .msg-counter {
+      font-size: 0.7rem; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(200,153,90,0.45); font-weight: 500;
+    }
+
+    .msg-nav {
+      display: flex; justify-content: center; gap: 12px; margin-top: 24px;
+    }
+    .msg-nav-btn {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(184,92,74,0.25);
+      background: transparent; color: rgba(184,92,74,0.6);
+      display: flex; align-items: center; justify-content: center;
+      cursor: none !important; font-size: 0.82rem;
+      transition: all 0.3s ease;
+    }
+    .msg-nav-btn:hover { background: var(--rose); color: white; border-color: var(--rose); }
+
+    @media (max-width: 700px) {
+      .msg-envelope { padding: 36px 28px; }
+    }
 
     /* ── HEARTS ── */
-    .heart-float {
-      position: fixed; pointer-events: none; z-index: 9998;
-      animation: floatUp ease-in forwards;
+    .hfloat { position: fixed; pointer-events: none; z-index: 99989; animation: floatUp ease-in forwards; }
+    @keyframes floatUp { 0%{opacity:1;transform:translateY(0) rotate(0deg)} 100%{opacity:0;transform:translateY(-105vh) rotate(30deg)} }
+
+    /* ── LOADING SCREEN ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 999999;
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0;
+      transition: opacity 0.9s ease, transform 0.9s ease;
     }
-    @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) rotate(0deg); } 100% { opacity: 0; transform: translateY(-100vh) rotate(25deg); } }
+    #loader.hide {
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+
+    .loader-bg-lines {
+      position: absolute; inset: 0; overflow: hidden;
+    }
+    .loader-bg-lines::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg, transparent, transparent 50px,
+        rgba(184,92,74,0.04) 50px, rgba(184,92,74,0.04) 51px
+      );
+    }
+
+    .loader-glow {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,92,74,0.18) 0%, transparent 70%);
+      animation: glowPulse 3s ease infinite;
+    }
+    @keyframes glowPulse {
+      0%,100% { transform: scale(1); opacity: 0.7; }
+      50%      { transform: scale(1.15); opacity: 1; }
+    }
+
+    .loader-content {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0;
+      text-align: center;
+    }
+
+    .loader-eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: rgba(200,153,90,0.6);
+      font-family: 'Jost', sans-serif; font-weight: 400;
+      margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+
+    .loader-name {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(3.5rem, 14vw, 8rem);
+      font-weight: 300; line-height: 1.0;
+      color: var(--parch);
+      letter-spacing: -0.02em;
+      overflow: hidden;
+    }
+    .loader-name .word {
+      display: block;
+      opacity: 0;
+      transform: translateY(60px);
+      animation: wordUp 0.9s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    .loader-name .word:nth-child(1) { animation-delay: 0.5s; }
+    .loader-name .word.italic {
+      font-style: italic; color: var(--rose);
+      animation-delay: 0.75s;
+    }
+    @keyframes wordUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .loader-divider {
+      width: 0; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(184,92,74,0.6), transparent);
+      margin: 22px auto 22px;
+      animation: expandLine 0.8s ease 1.2s forwards;
+    }
+    @keyframes expandLine { to { width: 180px; } }
+
+    .loader-sub {
+      font-family: 'Cormorant', serif; font-style: italic;
+      font-size: 1.05rem; font-weight: 300;
+      color: rgba(247,240,230,0.4);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.4s forwards;
+    }
+
+    .loader-bar-wrap {
+      margin-top: 48px; width: 140px;
+      opacity: 0; animation: fadeUp 0.6s ease 1.6s forwards;
+    }
+    .loader-bar-track {
+      height: 1px; background: rgba(247,240,230,0.1);
+      border-radius: 999px; overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%; width: 0;
+      background: linear-gradient(to right, var(--rose), var(--gold));
+      border-radius: 999px;
+      animation: fillBar 1.8s cubic-bezier(.4,0,.2,1) 1.8s forwards;
+    }
+    @keyframes fillBar { to { width: 100%; } }
 
     /* ── KEYFRAMES ── */
-    @keyframes slideUp { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes cair { to { transform: translateY(100vh); opacity: 0; } }
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+    @keyframes scaleIn  { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} }
+    @keyframes spin     { to{transform:rotate(360deg)} }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      nav { padding: 13px 16px; }
+    @media (max-width: 700px) {
+      nav { padding: 0 16px; }
       .nav-inner { gap: 16px; }
-      nav a { font-size: 0.8rem; }
-      .hero-photo { width: 180px; height: 180px; }
-      section { padding: 68px 16px; }
-      .letter-card { padding: 30px 22px; }
-      .music-card { padding: 30px 22px; }
-      .modal-card { padding: 34px 22px; }
+      nav a { font-size: 0.75rem; letter-spacing: 0.1em; }
+      .hero-photo { width: 170px; height: 170px; }
+      section { padding: 72px 16px; }
+      h2 { margin-bottom: 40px; }
+      .carta-wrap { padding: 36px 24px; }
       .timeline::before { display: none; }
-      .timeline-item { flex-direction: column; align-items: center; text-align: center; }
-      .t-img-wrap::after { display: none; }
-      .gallery-track img { min-width: 160px; width: 160px; height: 215px; }
-      .counter-unit { min-width: 88px; padding: 18px 14px 14px; }
-      .counter-num { font-size: 2.1rem; }
-      .reasons-grid { grid-template-columns: 1fr; }
-      .livro-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .tl-item { flex-direction: column; align-items: center; text-align: center; }
+      .tl-dot { display: none; }
+      .gallery-track img { min-width: 160px; width: 160px; height: 214px; }
+      .music-inner { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+      .music-cover { margin: 0 auto; }
+      .livro-inner { grid-template-columns: 1fr; gap: 36px; text-align: center; }
       .livro-cover { max-width: 190px; transform: none; }
-      #livro .section-label, #livro h2 { text-align: center; }
-      .livro-sinopse { border-left: none; border-top: 1px solid rgba(201,121,106,0.25); padding-left: 0; padding-top: 18px; }
+      #livro .eyebrow, #livro h2 { text-align: center; }
+      .livro-sinopse { border-left: none; border-top: 1px solid rgba(184,92,74,0.2); padding-left: 0; padding-top: 20px; }
+      .reasons-grid { grid-template-columns: 1fr; }
+      .timer-grid { gap: 12px; }
+      .t-unit { min-width: 90px; padding: 22px 18px 16px; }
+      .t-num { font-size: 2.4rem; }
+      .modal-box { padding: 36px 24px; }
+      * { cursor: auto !important; }
+      #cursor, #cursor-ring { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-bg-lines"></div>
+    <div class="loader-glow"></div>
+    <div class="loader-content">
+      <p class="loader-eyebrow">uma lembrança feita com carinho</p>
+      <div class="loader-name">
+        <span class="word">Talyssa</span>
+        <span class="word italic">Mayra</span>
+      </div>
+      <div class="loader-divider"></div>
+      <p class="loader-sub">"…sempre apontou para você."</p>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar-track">
+          <div class="loader-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- PARTICLES -->
+  <canvas id="particles"></canvas>
+
   <!-- NAV -->
   <nav id="mainNav">
     <div class="nav-inner">
-      <a href="#historia">Nossa História</a>
+      <a href="#mensagem-dia">Mensagem</a>
+      <a href="#historia">História</a>
       <a href="#galeria">Galeria</a>
       <a href="#carta">Carta</a>
       <a href="#razoes">Razões</a>
@@ -572,62 +866,89 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <p class="hero-eyebrow">Uma lembrança feita com carinho</p>
-      <div class="hero-photo-wrap">
+      <div class="photo-frame">
         <img src="fotos/talyssa.jpeg" alt="Talyssa" class="hero-photo" />
       </div>
-      <h1>Talyssa Mayra ❤️</h1>
+      <h1>Talyssa <em>Mayra</em></h1>
       <p class="hero-sub">Desde que você entrou na minha vida, tudo começou a fazer mais sentido.</p>
       <p class="hero-quote">
-        "Talvez a gente não tenha sido feito para o mesmo momento…<br>
+        "Talvez a gente não tenha sido feito para o mesmo momento…
         mas isso não significa que não seja para o mesmo destino."
       </p>
-      <a href="#historia" class="btn">Nossa História ↓</a>
+      <a href="#historia" class="btn"><span>Nossa História ↓</span></a>
+    </div>
+  </section>
+
+  <!-- MENSAGEM DO DIA -->
+  <section id="mensagem-dia">
+    <p class="eyebrow reveal">Para Você</p>
+    <h2 class="reveal">Mensagem <em>do Dia</em> 💌</h2>
+    <div class="msg-card reveal">
+      <p class="msg-day-badge" id="msgDayLabel">Segunda-feira</p>
+      <div class="msg-envelope">
+        <p class="msg-text" id="msgText"></p>
+        <div class="msg-footer">
+          <span class="msg-sig">— com amor, sempre ❤️</span>
+          <span class="msg-counter" id="msgCounter"></span>
+        </div>
+      </div>
+      <div class="msg-nav">
+        <button class="msg-nav-btn" onclick="mudarMensagem(-1)" title="Anterior">◀</button>
+        <button class="msg-nav-btn" onclick="mudarMensagem(1)" title="Próxima">▶</button>
+      </div>
     </div>
   </section>
 
   <!-- HISTÓRIA -->
   <section id="historia">
-    <p class="section-label reveal">Linha do Tempo</p>
-    <h2 class="reveal">Nossos Momentos</h2>
+    <p class="eyebrow reveal">Linha do Tempo</p>
+    <h2 class="reveal">Nossos <em>Momentos</em></h2>
     <div class="timeline">
 
-      <div class="timeline-item reveal">
-        <div class="t-img-wrap">
-          <img src="./fotos/momento2.jpeg" class="t-img" onclick="abrirImagem(this.src)" alt="Início de Outubro" />
+      <div class="tl-item reveal">
+        <div class="tl-img-wrap">
+          <img src="./fotos/momento2.jpeg" class="tl-img" onclick="abrirImagem(this.src)" alt="Início de Outubro" />
+          <div class="tl-dot"></div>
         </div>
-        <div class="t-text">
-          <h3>Início de Outubro</h3>
+        <div class="tl-text">
+          <p class="tl-date">Outubro 2025</p>
+          <h3>Primeiro Encontro</h3>
           <p>Nos vimos pessoalmente pela primeira vez — e ali eu soube que havia algo diferente.</p>
         </div>
       </div>
 
-      <div class="timeline-item reveal">
-        <div class="t-img-wrap">
-          <img src="./fotos/momento3.jpeg" class="t-img" onclick="abrirImagem(this.src)" alt="Primeiro Date" />
+      <div class="tl-item reveal">
+        <div class="tl-img-wrap">
+          <img src="./fotos/momento3.jpeg" class="tl-img" onclick="abrirImagem(this.src)" alt="Primeiro Date" />
+          <div class="tl-dot"></div>
         </div>
-        <div class="t-text">
+        <div class="tl-text">
+          <p class="tl-date">Outubro 2025</p>
           <h3>Primeiro Date</h3>
           <p>As conversas, os sorrisos, os silêncios bons e tudo aquilo que só nós entendemos.</p>
         </div>
       </div>
 
-      <div class="timeline-item reveal">
-        <div class="t-img-wrap">
-          <img src="./fotos/momento4.jpeg" class="t-img" onclick="abrirImagem(this.src)" alt="Primeiro Passeio" />
+      <div class="tl-item reveal">
+        <div class="tl-img-wrap">
+          <img src="./fotos/momento4.jpeg" class="tl-img" onclick="abrirImagem(this.src)" alt="Primeiro Passeio" />
+          <div class="tl-dot"></div>
         </div>
-        <div class="t-text">
+        <div class="tl-text">
+          <p class="tl-date">Novembro 2025</p>
           <h3>Nosso Primeiro Passeio</h3>
           <p>Um momento simples, mas que se tornou uma lembrança especial que guardo com carinho.</p>
         </div>
       </div>
 
-      <div class="timeline-item reveal">
-        <div class="t-img-wrap">
-          <img src="./fotos/momento5.jpeg" class="t-img" onclick="abrirImagem(this.src)" alt="Ano Novo" />
+      <div class="tl-item reveal">
+        <div class="tl-img-wrap">
+          <img src="./fotos/momento5.jpeg" class="tl-img" onclick="abrirImagem(this.src)" alt="Ano Novo" />
+          <div class="tl-dot"></div>
         </div>
-        <div class="t-text">
-          <h3>Nosso Primeiro Ano Novo Juntos</h3>
+        <div class="tl-text">
+          <p class="tl-date">Janeiro 2026</p>
+          <h3>Primeiro Ano Novo Juntos</h3>
           <p>Começar um novo ano ao seu lado fez tudo parecer ainda mais bonito e cheio de significado.</p>
         </div>
       </div>
@@ -637,10 +958,10 @@
 
   <!-- GALERIA -->
   <section id="galeria">
-    <p class="section-label reveal">Memórias</p>
-    <h2 class="reveal">Nossa Galeria 📸</h2>
-    <div class="gallery-wrap reveal">
-      <button class="gallery-btn" onclick="rolarGaleria(-1)">◀</button>
+    <p class="eyebrow reveal">Memórias</p>
+    <h2 class="reveal">Nossa <em>Galeria</em> 📸</h2>
+    <div class="gallery-outer reveal">
+      <button class="gal-btn" onclick="rolarGaleria(-1)">◀</button>
       <div class="gallery-track" id="galeriaScroll">
         <img src="./fotos/foto1.jpeg"  alt="Foto 1"  onclick="abrirImagem(this.src)" />
         <img src="./fotos/foto2.jpeg"  alt="Foto 2"  onclick="abrirImagem(this.src)" />
@@ -655,83 +976,84 @@
         <img src="./fotos/foto11.jpeg" alt="Foto 11" onclick="abrirImagem(this.src)" />
         <img src="./fotos/foto12.jpeg" alt="Foto 12" onclick="abrirImagem(this.src)" />
       </div>
-      <button class="gallery-btn" onclick="rolarGaleria(1)">▶</button>
+      <button class="gal-btn" onclick="rolarGaleria(1)">▶</button>
     </div>
   </section>
 
   <!-- CARTA -->
   <section id="carta">
-    <p class="section-label reveal">Palavras do Coração</p>
-    <h2 class="reveal">Uma Carta Para Você</h2>
-    <div class="letter-card reveal">
+    <p class="eyebrow reveal">Palavras do Coração</p>
+    <h2 class="reveal">Uma <em>Carta</em> Para Você</h2>
+    <div class="carta-wrap reveal">
       <p>Nem sempre o tempo escolhe o momento perfeito, mas às vezes ele apenas apresenta a pessoa certa.</p>
       <p>Você chegou de uma forma inesperada, mas profundamente marcante. E desde então, cada detalhe passou a ter mais significado.</p>
       <p>Talvez a vida tenha seus próprios caminhos, seus próprios atrasos e seus próprios planos. Mas se existir destino, eu gosto de pensar que ele, em algum momento, sempre apontou para você.</p>
       <p>Esse site não é apenas uma homenagem. É uma forma simples de dizer que você é importante, especial e inesquecível.</p>
       <p>E se for para caminhar em direção a algo bonito… eu espero que seja ao seu lado.</p>
+      <p class="carta-sig">— com amor ❤️</p>
     </div>
   </section>
 
-  <!-- 10 RAZÕES -->
+  <!-- RAZÕES -->
   <section id="razoes">
-    <p class="section-label reveal">Com Amor</p>
-    <h2 class="reveal">10 Motivos Pelos Quais Eu Te Amo ❤️</h2>
+    <p class="eyebrow reveal">Com Amor</p>
+    <h2 class="reveal">10 Motivos Pelos Quais <em>Eu Te Amo</em></h2>
     <div class="reasons-grid">
-      <div class="reason-card reveal"><div class="reason-num">01</div><h4>Seu jeito</h4><p>Existe algo em você que torna tudo mais leve.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">02</div><h4>Sua calma</h4><p>Sua paz também acalma o meu coração.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">03</div><h4>Seu sorriso</h4><p>Ele consegue mudar completamente o meu dia.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">04</div><h4>Sua força</h4><p>Admiro a mulher incrível que você é.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">05</div><h4>Sua presença</h4><p>Até o silêncio fica melhor quando é com você.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">06</div><h4>Sua persistência</h4><p>Sua determinação inspira quem está perto.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">07</div><h4>Seu cuidado</h4><p>Você demonstra amor até nos pequenos detalhes.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">08</div><h4>Sua parceria</h4><p>Caminhar ao seu lado faz tudo parecer mais possível.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">09</div><h4>Seu carinho</h4><p>Ele aquece até os dias mais difíceis.</p></div>
-      <div class="reason-card reveal"><div class="reason-num">10</div><h4>Sua preocupação</h4><p>Ela mostra o quanto seu coração é verdadeiro.</p></div>
+      <div class="r-card reveal"><div class="r-num">01</div><h4>Seu Jeito</h4><p>Existe algo em você que torna tudo mais leve.</p></div>
+      <div class="r-card reveal"><div class="r-num">02</div><h4>Sua Calma</h4><p>Sua paz também acalma o meu coração.</p></div>
+      <div class="r-card reveal"><div class="r-num">03</div><h4>Seu Sorriso</h4><p>Ele consegue mudar completamente o meu dia.</p></div>
+      <div class="r-card reveal"><div class="r-num">04</div><h4>Sua Força</h4><p>Admiro a mulher incrível que você é.</p></div>
+      <div class="r-card reveal"><div class="r-num">05</div><h4>Sua Presença</h4><p>Até o silêncio fica melhor quando é com você.</p></div>
+      <div class="r-card reveal"><div class="r-num">06</div><h4>Sua Persistência</h4><p>Sua determinação inspira quem está perto.</p></div>
+      <div class="r-card reveal"><div class="r-num">07</div><h4>Seu Cuidado</h4><p>Você demonstra amor até nos pequenos detalhes.</p></div>
+      <div class="r-card reveal"><div class="r-num">08</div><h4>Sua Parceria</h4><p>Caminhar ao seu lado faz tudo parecer mais possível.</p></div>
+      <div class="r-card reveal"><div class="r-num">09</div><h4>Seu Carinho</h4><p>Ele aquece até os dias mais difíceis.</p></div>
+      <div class="r-card reveal"><div class="r-num">10</div><h4>Sua Preocupação</h4><p>Ela mostra o quanto seu coração é verdadeiro.</p></div>
     </div>
   </section>
 
   <!-- MÚSICAS -->
   <section id="musicas">
-    <p class="section-label reveal">Trilha Sonora</p>
-    <h2 class="reveal">Músicas Que Me Lembram Você 🎵</h2>
-    <div class="music-card reveal">
-      <img src="./fotos/twentyonepilots.jpg" alt="Twenty One Pilots" />
-      <p class="music-band">Com certeza é Twenty One Pilots.</p>
-      <ul class="song-list">
-        <li><span class="song-num">01</span> Smithereens</li>
-        <li><span class="song-num">02</span> Heavydirtysoul</li>
-        <li><span class="song-num">03</span> Nico and the Niners</li>
-        <li><span class="song-num">04</span> Bandito</li>
-        <li><span class="song-num">05</span> Jumpsuit</li>
-      </ul>
+    <p class="eyebrow reveal">Trilha Sonora</p>
+    <h2 class="reveal">Músicas Que Me <em>Lembram Você</em> 🎵</h2>
+    <div class="music-inner reveal">
+      <img src="./fotos/twentyonepilots.jpg" alt="Twenty One Pilots" class="music-cover" />
+      <div>
+        <p class="music-band">Com certeza é Twenty One Pilots.</p>
+        <ul class="song-list">
+          <li><span class="song-num">01</span> Smithereens</li>
+          <li><span class="song-num">02</span> Heavydirtysoul</li>
+          <li><span class="song-num">03</span> Nico and the Niners</li>
+          <li><span class="song-num">04</span> Bandito</li>
+          <li><span class="song-num">05</span> Jumpsuit</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- CONTADOR -->
-  <section id="contador-section">
-    <p class="section-label reveal">Contagem</p>
-    <h2 class="reveal">Nosso Tempo Juntos ⏳</h2>
-    <div style="max-width:700px; margin:0 auto; text-align:center;">
-      <div class="counter-grid reveal">
-        <div class="counter-unit"><div class="counter-num" id="cnt-dias">0</div><div class="counter-label">Dias</div></div>
-        <div class="counter-unit"><div class="counter-num" id="cnt-horas">0</div><div class="counter-label">Horas</div></div>
-        <div class="counter-unit"><div class="counter-num" id="cnt-min">0</div><div class="counter-label">Minutos</div></div>
-        <div class="counter-unit"><div class="counter-num" id="cnt-seg">0</div><div class="counter-label">Segundos</div></div>
-      </div>
+  <section id="timer">
+    <p class="eyebrow reveal">Contagem</p>
+    <h2 class="reveal">Nosso <em>Tempo Juntos</em> ⏳</h2>
+    <div class="timer-grid reveal">
+      <div class="t-unit"><div class="t-num" id="cnt-d">0</div><div class="t-label">Dias</div></div>
+      <div class="t-unit"><div class="t-num" id="cnt-h">00</div><div class="t-label">Horas</div></div>
+      <div class="t-unit"><div class="t-num" id="cnt-m">00</div><div class="t-label">Minutos</div></div>
+      <div class="t-unit"><div class="t-num" id="cnt-s">00</div><div class="t-label">Segundos</div></div>
     </div>
   </section>
 
   <!-- LIVRO -->
   <section id="livro">
     <div class="livro-inner">
-      <div class="livro-cover-wrap reveal">
+      <div class="livro-book reveal-left">
         <img src="./fotos/livro.png" alt="Antes Que Você Partisse" class="livro-cover" />
       </div>
-      <div class="livro-text">
-        <p class="section-label reveal">Escrito Para Você</p>
-        <h2 class="reveal">Antes Que Você Partisse</h2>
-        <p class="livro-author reveal">Gabriel Areque</p>
-        <p class="livro-sinopse reveal">
+      <div class="livro-text reveal-right">
+        <p class="eyebrow">Escrito Para Você</p>
+        <h2>Antes Que Você <em>Partisse</em></h2>
+        <p class="livro-autor">Gabriel Areque</p>
+        <p class="livro-sinopse">
           <strong>Gabriel acreditava que algumas partes da vida simplesmente acabavam.</strong>
           Até conhecer Talyssa Mayra.<br><br>
           O que começa com uma conversa inesperada se transforma em uma conexão intensa, verdadeira e inesquecível.
@@ -746,96 +1068,252 @@
 
   <!-- FINAL -->
   <section id="final">
-    <p class="section-label reveal" style="color: rgba(255,255,255,0.4);">Ainda Há Mais</p>
-    <h2 class="reveal">Isso é só o começo ✨</h2>
+    <p class="eyebrow reveal">Ainda Há Mais</p>
+    <h2 class="reveal">Isso é só o <em>começo</em> ✨</h2>
     <p class="reveal">Ainda temos muitos capítulos para escrever.</p>
-    <p class="final-quote reveal">"Entre todos os caminhos, eu escolheria você outra vez."</p>
-    <button class="btn btn-static reveal" onclick="surpresa()">Clique aqui se você me ama ❤️</button>
+    <p class="final-q reveal">"Entre todos os caminhos, eu escolheria você outra vez."</p>
+    <button class="btn btn-white reveal" onclick="surpresa()"><span>Clique aqui se você me ama ❤️</span></button>
   </section>
 
   <footer>
-    Feito com carinho ❤️ · Talyssa Mayra
+    Feito com <span>❤️</span> para Talyssa Mayra
   </footer>
 
   <script>
-    // NAV scroll
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    // ── LOADING SCREEN ──
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = document.getElementById('loader');
+        loader.classList.add('hide');
+        setTimeout(() => loader.remove(), 1000);
+      }, 3600);
+    });
 
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver((entries) => {
+    // ── CURSOR ──
+    const cur = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animCursor() {
+      cur.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+
+    // ── PARTICLES ──
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let pts = [];
+    function resizeCanvas() { canvas.width = innerWidth; canvas.height = innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    for (let i = 0; i < 55; i++) {
+      pts.push({
+        x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+        vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.8 + 0.4,
+        c: Math.random() > 0.5 ? 'rgba(184,92,74,' : 'rgba(200,153,90,'
+      });
+    }
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.c + (0.25 + Math.random() * 0.15) + ')';
+        ctx.fill();
+      });
+      // connect nearby
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+          if (d < 120) {
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.strokeStyle = `rgba(184,92,74,${0.06 * (1 - d / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // ── NAV ──
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
+
+    // ── SCROLL REVEAL ──
+    const allReveal = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revObs = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 55);
-          obs.unobserve(e.target);
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          revObs.unobserve(e.target);
         }
       });
     }, { threshold: 0.1 });
-    revealEls.forEach(el => obs.observe(el));
+    allReveal.forEach(el => revObs.observe(el));
 
-    // Contador
-    const inicio = new Date("2025-10-01T00:00:00");
-    function pad(n) { return String(n).padStart(2, '0'); }
-    function atualizarContador() {
-      const diff = Date.now() - inicio;
-      document.getElementById('cnt-dias').textContent  = Math.floor(diff / 86400000);
-      document.getElementById('cnt-horas').textContent = pad(Math.floor((diff / 3600000) % 24));
-      document.getElementById('cnt-min').textContent   = pad(Math.floor((diff / 60000) % 60));
-      document.getElementById('cnt-seg').textContent   = pad(Math.floor((diff / 1000) % 60));
+    // ── CONTADOR ──
+    const start = new Date("2025-10-01T00:00:00");
+    const pad = n => String(n).padStart(2, '0');
+    function tick() {
+      const d = Date.now() - start;
+      document.getElementById('cnt-d').textContent = Math.floor(d / 86400000);
+      document.getElementById('cnt-h').textContent = pad(Math.floor((d / 3600000) % 24));
+      document.getElementById('cnt-m').textContent = pad(Math.floor((d / 60000) % 60));
+      document.getElementById('cnt-s').textContent = pad(Math.floor((d / 1000) % 60));
     }
-    atualizarContador();
-    setInterval(atualizarContador, 1000);
+    tick(); setInterval(tick, 1000);
 
-    // Galeria
-    function rolarGaleria(dir) {
-      document.getElementById('galeriaScroll').scrollBy({ left: dir * 320, behavior: 'smooth' });
-    }
+    // ── GALERIA ──
+    function rolarGaleria(d) { document.getElementById('galeriaScroll').scrollBy({ left: d * 340, behavior: 'smooth' }); }
 
-    // Lightbox
+    // ── LIGHTBOX ──
     function abrirImagem(src) {
-      const box = document.createElement('div');
-      box.className = 'lightbox';
-      box.innerHTML = `<span class="lightbox-close" onclick="event.stopPropagation();this.parentElement.remove()">✕</span><img src="${src}" onclick="event.stopPropagation()" />`;
-      box.onclick = () => box.remove();
-      document.body.appendChild(box);
+      const lb = document.createElement('div');
+      lb.className = 'lightbox';
+      lb.innerHTML = `<span class="lb-close" onclick="event.stopPropagation();this.parentElement.remove()">✕</span><img src="${src}" onclick="event.stopPropagation()" />`;
+      lb.onclick = () => lb.remove();
+      document.body.appendChild(lb);
     }
 
-    // Surpresa
+    // ── MENSAGEM DO DIA ──
+    const diasSemana = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+    const mensagens = {
+      0: [ // Domingo
+        "Domingos me lembram de tudo que é calmo, bonito e verdadeiro — assim como você.",
+        "Nos dias de descanso, minha mente sempre encontra um caminho até você.",
+        "Domingo é o dia em que o tempo parece mais gentil. Assim como você é comigo.",
+        "Que esse domingo seja tão suave quanto o seu jeito de ser.",
+        "Nos dias sem pressa, percebo o quanto você faz parte dos meus pensamentos mais bonitos.",
+        "Domingo cheirando a café e lembrando de você — o melhor tipo de manhã.",
+        "Que o seu domingo tenha a mesma calma que você me traz.",
+      ],
+      1: [ // Segunda
+        "Semanas novas sempre me lembram que tenho você para atravessá-las.",
+        "Segunda-feira fica mais leve quando o primeiro pensamento é você.",
+        "Começo de semana, e você já é o melhor pensamento que eu poderia ter.",
+        "Que essa semana te traga coisas tão boas quanto o que você me traz.",
+        "Semanas passam, mas o que sinto por você só fica mais certo.",
+        "Segunda-feira não é tão difícil quando existe você no final do dia.",
+        "Toda semana nova é uma chance de te falar o quanto você importa.",
+      ],
+      2: [ // Terça
+        "Você é o tipo de pessoa que transforma dias comuns em memórias.",
+        "Terça-feira — e você ainda é o melhor pensamento que tenho.",
+        "Dias comuns ficam extraordinários quando eu penso em você.",
+        "Você tem o dom de tornar qualquer momento especial, mesmo sem saber.",
+        "Nem todo dia tem grandes eventos — mas todo dia tem você, e isso já basta.",
+        "Terças passam rápido quando minha mente tem você pra visitar.",
+        "Dias simples com você valem mais do que grandes dias sem você.",
+      ],
+      3: [ // Quarta
+        "Metade da semana, e você ainda é o melhor pensamento do meu dia.",
+        "Quarta-feira — no meio do caminho, e você já me fez sorrir mais de uma vez.",
+        "A semana chega na metade, e eu ainda penso em você como se fosse a primeira vez.",
+        "Você transforma até as quartas-feiras em dias que valem a pena.",
+        "No meio de tudo, você aparece como uma pausa necessária e bonita.",
+        "Quarta: metade da semana, e inteira a certeza do quanto você é especial.",
+        "Você é o tipo de certeza que não depende do dia da semana.",
+      ],
+      4: [ // Quinta
+        "Cada dia perto de você me prova que algumas escolhas nunca erram.",
+        "Quinta-feira — quase lá, e você tornando tudo mais suave.",
+        "Você é a prova de que algumas pessoas chegam pra ficar, mesmo que o tempo seja curto.",
+        "A semana quase acabou, e você foi o melhor pensamento de cada dia.",
+        "Quinta-feira — e eu ainda estou aqui, pensando em você como no primeiro dia.",
+        "Algumas coisas ficam melhores com o tempo. Você é uma delas.",
+        "Quinta-feira já vale quando começa pensando em você.",
+      ],
+      5: [ // Sexta
+        "O fim de semana chegou, mas o melhor de qualquer dia continua sendo você.",
+        "Sexta-feira — e o pensamento mais gostoso ainda é o de você.",
+        "A semana passa, mas o que eu sinto por você não tem prazo de validade.",
+        "Sexta merece comemoração. Você merece mais ainda.",
+        "Fim de semana chegando, e a primeira coisa que penso é em você.",
+        "Sextas são especiais. Você é mais ainda.",
+        "Que essa sexta te traga leveza, alegria e a certeza de que é muito especial.",
+      ],
+      6: [ // Sábado
+        "Nos dias livres, minha mente sempre encontra um caminho até você.",
+        "Sábado — o dia perfeito pra lembrar o quanto você importa.",
+        "Sábados com você na memória são os melhores sábados possíveis.",
+        "Dias livres me fazem perceber o quanto prefiro passá-los pensando em você.",
+        "Sábado de manhã, e você já é o meu pensamento favorito.",
+        "Que esse sábado seja tão especial quanto você é pra mim.",
+        "Sábado — o dia fica mais bonito quando começa lembrando de você.",
+      ],
+    };
+
+    const hoje = new Date();
+    const diaSemana = hoje.getDay();
+    const frasesDoDia = mensagens[diaSemana];
+    // usa a semana do ano pra variar a frase sem repetir cedo
+    const semanaAno = Math.floor((hoje - new Date(hoje.getFullYear(), 0, 1)) / 604800000);
+    let msgIndex = semanaAno % frasesDoDia.length;
+
+    function renderMensagem() {
+      const label = document.getElementById('msgDayLabel');
+      const text  = document.getElementById('msgText');
+      const counter = document.getElementById('msgCounter');
+      if (label) label.textContent = diasSemana[diaSemana];
+      if (text)  text.textContent  = frasesDoDia[msgIndex];
+      if (counter) counter.textContent = `${msgIndex + 1} / ${frasesDoDia.length}`;
+    }
+
+    function mudarMensagem(dir) {
+      const text = document.getElementById('msgText');
+      text.classList.add('fade');
+      setTimeout(() => {
+        msgIndex = (msgIndex + dir + frasesDoDia.length) % frasesDoDia.length;
+        renderMensagem();
+        text.classList.remove('fade');
+      }, 450);
+    }
+
+    renderMensagem();
+
+    // ── SURPRESA ──
     function surpresa() {
       lancarCoracoes();
-      const overlay = document.createElement('div');
-      overlay.className = 'modal-overlay';
-      overlay.innerHTML = `
-        <div class="modal-card">
+      const bg = document.createElement('div');
+      bg.className = 'modal-bg';
+      bg.innerHTML = `
+        <div class="modal-box">
           <h2>Uma Carta Secreta ❤️</h2>
           <p>Se existe algo que eu tenho certeza, é que algumas pessoas chegam na nossa vida não por acaso, mas porque deveriam estar ali.<br><br>
           Você se tornou uma dessas certezas bonitas. Cada conversa, cada detalhe e cada momento ao seu lado fez tudo ganhar mais significado.<br><br>
           Entre tantas possibilidades, eu ainda escolheria você. Entre tantos caminhos, eu ainda caminharia até você.<br><br>
           E se isso tudo for só o começo… então eu mal posso esperar pelos próximos capítulos.</p>
-          <button class="btn btn-static" style="background:var(--rose);color:white;border-color:var(--rose);" onclick="this.closest('.modal-overlay').remove()">Fechar ❤️</button>
+          <button class="btn" style="opacity:1;animation:none;" onclick="this.closest('.modal-bg').remove()"><span>Fechar ❤️</span></button>
         </div>`;
-      overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
-      document.body.appendChild(overlay);
+      bg.addEventListener('click', e => { if (e.target === bg) bg.remove(); });
+      document.body.appendChild(bg);
     }
 
     function lancarCoracoes() {
-      const emojis = ['❤️','🌹','💕','✨','💖'];
-      for (let i = 0; i < 26; i++) {
+      const em = ['❤️','🌹','💕','✨','💖','🌸'];
+      for (let i = 0; i < 30; i++) {
         setTimeout(() => {
           const h = document.createElement('div');
-          h.className = 'heart-float';
-          h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-          h.style.left = (Math.random() * 96) + 'vw';
-          h.style.bottom = '-30px';
-          h.style.fontSize = (15 + Math.random() * 16) + 'px';
-          h.style.animationDuration = (2.8 + Math.random() * 2) + 's';
+          h.className = 'hfloat';
+          h.textContent = em[Math.floor(Math.random() * em.length)];
+          h.style.cssText = `left:${Math.random()*96}vw;bottom:-30px;font-size:${14+Math.random()*18}px;animation-duration:${2.5+Math.random()*2.5}s`;
           document.body.appendChild(h);
-          setTimeout(() => h.remove(), 5000);
-        }, i * 80);
+          setTimeout(() => h.remove(), 5500);
+        }, i * 75);
       }
     }
   </script>
-
 </body>
 </html>
