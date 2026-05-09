@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Talyssa Mayra ❤️</title>
+  <title>Talyssa Mayra â¤ï¸</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
       overflow-x: hidden;
     }
 
-    /* ── CURSOR ── */
+    /* â”€â”€ CURSOR â”€â”€ */
     * { cursor: none !important; }
     #cursor {
       width: 10px; height: 10px;
@@ -51,53 +51,73 @@
       transition: transform 0.4s ease, width 0.3s, height 0.3s, border-color 0.3s;
     }
 
-    /* ── PARTICLES CANVAS ── */
+    /* â”€â”€ PARTICLES CANVAS â”€â”€ */
     #particles {
       position: fixed; inset: 0;
       z-index: 0; pointer-events: none;
       opacity: 0.45;
     }
 
-    /* ── NAV ── */
+    /* â”€â”€ NAV â”€â”€ */
     nav {
       position: fixed; top: 0; width: 100%;
       z-index: 1000;
-      padding: 0 40px;
-      height: 64px;
+      padding: 12px 24px 0;
+      height: 74px;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.4s, box-shadow 0.4s;
+      pointer-events: none;
+      transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
     }
     nav.scrolled {
-      background: rgba(247,240,230,0.94);
+      background: linear-gradient(180deg, rgba(247,240,230,0.92), rgba(247,240,230,0));
       backdrop-filter: blur(24px);
-      box-shadow: 0 1px 0 rgba(184,92,74,0.1), 0 8px 32px rgba(28,20,16,0.06);
     }
     .nav-inner {
-      display: flex; gap: 36px; align-items: center; flex-wrap: wrap; justify-content: center;
+      max-width: min(1040px, calc(100vw - 32px));
+      display: flex; gap: 4px; align-items: center; justify-content: center;
+      padding: 8px;
+      border: 1px solid rgba(184,92,74,0.12);
+      border-radius: 999px;
+      background: rgba(253,248,242,0.72);
+      box-shadow: 0 10px 34px rgba(28,20,16,0.08);
+      backdrop-filter: blur(22px);
+      overflow-x: auto;
+      scrollbar-width: none;
+      pointer-events: auto;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    nav.scrolled .nav-inner {
+      background: rgba(253,248,242,0.9);
+      box-shadow: 0 12px 36px rgba(28,20,16,0.12);
     }
     nav a {
       text-decoration: none;
       color: var(--smoke);
-      font-size: 0.78rem;
+      font-size: 0.69rem;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       position: relative;
-      padding-bottom: 2px;
-      transition: color 0.3s;
+      flex: 0 0 auto;
+      padding: 9px 13px 8px;
+      border-radius: 999px;
+      transition: color 0.3s, background 0.3s, transform 0.3s;
     }
     nav a::after {
-      content: '';
-      position: absolute; bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 0; height: 1px;
-      background: var(--rose);
-      transition: width 0.35s ease;
+      display: none;
     }
-    nav a:hover { color: var(--rose); }
-    nav a:hover::after { width: 100%; }
+    nav a:hover {
+      color: var(--rose);
+      background: rgba(184,92,74,0.08);
+      transform: translateY(-1px);
+    }
+    nav a.active {
+      color: #fff8f0;
+      background: var(--rose);
+      box-shadow: 0 6px 18px rgba(184,92,74,0.24);
+    }
 
-    /* ── REVEAL ── */
+    /* â”€â”€ REVEAL â”€â”€ */
     .reveal {
       opacity: 0;
       transform: translateY(44px);
@@ -108,7 +128,7 @@
     .reveal-right { opacity:0; transform:translateX(48px);  transition: opacity 0.85s cubic-bezier(.16,1,.3,1), transform 0.85s cubic-bezier(.16,1,.3,1); }
     .reveal-left.visible, .reveal-right.visible { opacity:1; transform:translateX(0); }
 
-    /* ── HERO ── */
+    /* â”€â”€ HERO â”€â”€ */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
@@ -252,7 +272,7 @@
     .btn-white::before { background: var(--rose); }
     .btn-white:hover { color: white; }
 
-    /* ── SECTION SHARED ── */
+    /* â”€â”€ SECTION SHARED â”€â”€ */
     section { padding: 108px 24px; position: relative; z-index: 1; }
 
     .eyebrow {
@@ -270,7 +290,7 @@
     }
     h2 em { font-style: italic; color: var(--rose); }
 
-    /* ── DIVIDER ── */
+    /* â”€â”€ DIVIDER â”€â”€ */
     .divider {
       display: flex; align-items: center; justify-content: center;
       gap: 16px; margin: 0 auto 64px; max-width: 300px;
@@ -282,7 +302,7 @@
     .divider::after { background: linear-gradient(to left, transparent, rgba(184,92,74,0.3)); }
     .divider span { color: var(--rose); font-size: 0.7rem; }
 
-    /* ── HISTORIA ── */
+    /* â”€â”€ HISTORIA â”€â”€ */
     #historia { background: var(--paper); }
 
     .timeline { max-width: 680px; margin: 0 auto; position: relative; }
@@ -318,7 +338,7 @@
     .tl-text h3 { font-family: 'Cormorant', serif; font-size: 1.3rem; font-weight: 400; color: var(--ink); margin-bottom: 8px; }
     .tl-text p { color: var(--smoke); font-size: 0.95rem; line-height: 1.65; font-weight: 300; }
 
-    /* ── GALERIA ── */
+    /* â”€â”€ GALERIA â”€â”€ */
     #galeria { background: var(--parch); }
 
     .gallery-outer {
@@ -350,7 +370,7 @@
     }
     .gallery-track img:hover { transform: translateY(-8px) rotate(0.5deg); box-shadow: 0 4px 0 rgba(184,92,74,0.2), 0 20px 40px rgba(28,20,16,0.14); }
 
-    /* ── CARTA ── */
+    /* â”€â”€ CARTA â”€â”€ */
     #carta { background: var(--blush); }
 
     .carta-wrap {
@@ -380,7 +400,7 @@
       font-size: 1.05rem; color: var(--rose); text-align: right;
     }
 
-    /* ── RAZÕES ── */
+    /* â”€â”€ RAZÃ•ES â”€â”€ */
     #razoes { background: var(--paper); }
 
     .reasons-grid {
@@ -407,7 +427,7 @@
     .r-card h4 { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink); margin-bottom: 8px; text-transform: uppercase; }
     .r-card p { font-size: 0.9rem; color: var(--smoke); line-height: 1.6; font-weight: 300; }
 
-    /* ── MÚSICAS ── */
+    /* â”€â”€ MÃšSICAS â”€â”€ */
     #musicas { background: var(--ink); position: relative; overflow: hidden; }
     #musicas::before {
       content: '';
@@ -442,7 +462,96 @@
     .song-list li:hover { color: var(--gold); padding-left: 6px; }
     .song-num { font-family: 'Cormorant', serif; font-size: 0.78rem; color: var(--rose); min-width: 18px; font-weight: 400; }
 
-    /* ── CONTADOR ── */
+    /* â”€â”€ CINEMA â”€â”€ */
+    #cinema { background: var(--parch); }
+    .cinema-grid {
+      max-width: 980px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .cinema-card {
+      background: var(--card);
+      border: 1px solid rgba(184,92,74,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 4px 0 rgba(184,92,74,0.1), 0 14px 34px rgba(28,20,16,0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .cinema-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 4px 0 rgba(184,92,74,0.18), 0 22px 46px rgba(28,20,16,0.13);
+    }
+    .cinema-card img {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      display: block;
+      object-fit: cover;
+      cursor: none !important;
+    }
+    .cinema-card h3 {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 14px;
+      font-family: 'Cormorant', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      line-height: 1.25;
+      text-align: center;
+      color: var(--ink);
+    }
+
+    /* â”€â”€ SÃ‰RIES â”€â”€ */
+    #series {
+      background: #140d0d;
+      position: relative;
+      overflow: hidden;
+    }
+    #series::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 45% at 50% 0%, rgba(184,32,32,0.28) 0%, transparent 62%),
+        linear-gradient(135deg, rgba(184,92,74,0.08), transparent 48%, rgba(200,153,90,0.06));
+    }
+    #series .eyebrow { color: rgba(255,205,148,0.74); }
+    #series h2 { color: rgba(247,240,230,0.94); }
+    .series-feature {
+      max-width: 780px; margin: 0 auto;
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 220px 1fr;
+      gap: 38px; align-items: center;
+      background: rgba(247,240,230,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 3px;
+      padding: 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.34);
+    }
+    .series-poster {
+      aspect-ratio: 2 / 3;
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      background: #090606;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 8px 8px 0 rgba(184,32,32,0.38), 0 18px 36px rgba(0,0,0,0.45);
+    }
+    .series-text { color: rgba(247,240,230,0.84); }
+    .series-text h3 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      color: #fff8f0;
+      margin-bottom: 12px;
+    }
+    .series-text p {
+      color: rgba(247,240,230,0.68);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* â”€â”€ CONTADOR â”€â”€ */
     #timer { background: var(--blush); }
     .timer-grid { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
     .t-unit {
@@ -455,7 +564,111 @@
     .t-num { font-family: 'Cormorant', serif; font-size: 3rem; font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 8px; }
     .t-label { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--smoke); font-weight: 500; }
 
-    /* ── LIVRO ── */
+    /* â”€â”€ ÃRVORE â”€â”€ */
+    #arvore { background: var(--paper); overflow: hidden; }
+    .tree-wrap {
+      max-width: 820px; margin: 0 auto;
+      display: grid; grid-template-columns: 300px 1fr;
+      gap: 54px; align-items: center;
+    }
+    .love-tree {
+      --growth: 0.35;
+      position: relative;
+      height: 360px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .tree-ground {
+      position: absolute;
+      bottom: 22px;
+      width: 230px; height: 18px;
+      border-radius: 50%;
+      background: rgba(81, 52, 39, 0.12);
+    }
+    .tree-trunk {
+      position: absolute;
+      bottom: 34px;
+      width: calc(24px + 18px * var(--growth));
+      height: calc(92px + 96px * var(--growth));
+      border-radius: 22px 22px 8px 8px;
+      background: linear-gradient(90deg, #6f3f2c 0%, #9a6045 48%, #5a3326 100%);
+      transform-origin: bottom;
+      box-shadow: inset -8px 0 rgba(0,0,0,0.13);
+    }
+    .tree-branch {
+      position: absolute;
+      bottom: calc(102px + 74px * var(--growth));
+      width: calc(80px + 50px * var(--growth));
+      height: 12px;
+      border-radius: 999px;
+      background: #76442f;
+      transform-origin: center left;
+    }
+    .tree-branch.left { transform: rotate(-28deg); margin-left: -76px; }
+    .tree-branch.right { transform: rotate(26deg); margin-left: 24px; }
+    .tree-crown {
+      position: absolute;
+      bottom: calc(122px + 70px * var(--growth));
+      width: calc(148px + 112px * var(--growth));
+      height: calc(118px + 96px * var(--growth));
+      border-radius: 48% 52% 44% 56%;
+      background:
+        radial-gradient(circle at 30% 34%, #f3a8ad 0 12%, transparent 13%),
+        radial-gradient(circle at 64% 28%, #e26d78 0 14%, transparent 15%),
+        radial-gradient(circle at 72% 64%, #b85c4a 0 15%, transparent 16%),
+        radial-gradient(circle at 34% 70%, #d98778 0 14%, transparent 15%),
+        linear-gradient(135deg, #e9a19d 0%, #c96d60 54%, #9d4c42 100%);
+      box-shadow: 0 18px 34px rgba(88,45,38,0.18);
+      transform: scale(calc(0.72 + 0.28 * var(--growth)));
+      transform-origin: bottom center;
+    }
+    .tree-heart {
+      position: absolute;
+      color: #fff7f0;
+      font-size: calc(0.8rem + 0.65rem * var(--growth));
+      text-shadow: 0 2px 10px rgba(100,35,30,0.28);
+    }
+    .tree-heart:nth-child(1) { left: 26%; top: 30%; }
+    .tree-heart:nth-child(2) { left: 58%; top: 22%; }
+    .tree-heart:nth-child(3) { left: 46%; top: 58%; }
+    .tree-heart:nth-child(4) { left: 70%; top: 52%; }
+    .tree-heart:nth-child(5) { left: 20%; top: 58%; }
+    .tree-info {
+      background: var(--card);
+      border: 1px solid rgba(184,92,74,0.09);
+      border-radius: 3px;
+      padding: 34px 32px;
+      box-shadow: 0 4px 0 rgba(184,92,74,0.1), 0 14px 34px rgba(28,20,16,0.07);
+    }
+    .tree-info h3 {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .tree-info p {
+      color: var(--smoke);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 18px;
+    }
+    .tree-days {
+      font-family: 'Cormorant', serif;
+      font-size: 2.6rem;
+      color: var(--rose);
+      line-height: 1;
+    }
+    .tree-days-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--smoke);
+      margin-top: 8px;
+    }
+
+    /* â”€â”€ LIVRO â”€â”€ */
     #livro { background: var(--ink); position: relative; overflow: hidden; }
     #livro::before {
       content: '';
@@ -513,9 +726,10 @@
     }
     .livro-sinopse strong { color: rgba(247,240,230,0.9); font-weight: 400; }
 
-    /* ── FINAL ── */
+    /* â”€â”€ FINAL â”€â”€ */
     #final {
-      background: var(--rose); text-align: center;
+      background: linear-gradient(135deg, #261512 0%, #5b2924 52%, #8b463d 100%);
+      text-align: center;
       padding: 120px 24px; position: relative; overflow: hidden;
     }
     #final::before {
@@ -523,19 +737,19 @@
       position: absolute; inset: 0;
       background-image: repeating-linear-gradient(
         45deg, transparent, transparent 40px,
-        rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px
+        rgba(255,255,255,0.06) 40px, rgba(255,255,255,0.06) 41px
       );
     }
-    #final .eyebrow { color: rgba(255,255,255,0.55); position: relative; z-index: 1; }
-    #final h2 { color: white; position: relative; z-index: 1; }
-    #final p { color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto 14px; font-size: 1rem; line-height: 1.75; position: relative; z-index: 1; font-weight: 300; }
+    #final .eyebrow { color: #f3c58f; position: relative; z-index: 1; }
+    #final h2 { color: #fff8f0; position: relative; z-index: 1; text-shadow: 0 3px 18px rgba(0,0,0,0.28); }
+    #final p { color: rgba(255,248,240,0.92); max-width: 560px; margin: 0 auto 14px; font-size: 1.04rem; line-height: 1.8; position: relative; z-index: 1; font-weight: 300; }
     .final-q {
       font-family: 'Cormorant', serif; font-style: italic;
-      font-size: 1.35rem !important; color: rgba(255,255,255,0.9) !important;
+      font-size: 1.35rem !important; color: #ffffff !important;
       margin: 28px auto 48px !important;
     }
 
-    /* ── FOOTER ── */
+    /* â”€â”€ FOOTER â”€â”€ */
     footer {
       text-align: center; padding: 28px;
       font-size: 0.8rem; color: var(--smoke);
@@ -544,7 +758,7 @@
     }
     footer span { color: var(--rose); }
 
-    /* ── LIGHTBOX ── */
+    /* â”€â”€ LIGHTBOX â”€â”€ */
     .lightbox {
       position: fixed; inset: 0;
       background: rgba(12,8,4,0.94);
@@ -556,7 +770,7 @@
     .lb-close { position: absolute; top: 24px; right: 28px; color: rgba(255,255,255,0.6); font-size: 1.4rem; cursor: none !important; transition: color 0.2s; line-height: 1; }
     .lb-close:hover { color: white; }
 
-    /* ── MODAL ── */
+    /* â”€â”€ MODAL â”€â”€ */
     .modal-bg {
       position: fixed; inset: 0;
       background: rgba(12,8,4,0.85);
@@ -580,7 +794,7 @@
     .modal-box h2 { font-family: 'Cormorant', serif; font-size: 2rem; font-weight: 300; color: var(--ink); margin-bottom: 22px; }
     .modal-box p { font-family: 'Cormorant', serif; font-size: 1.1rem; font-weight: 300; color: var(--smoke); line-height: 1.9; margin-bottom: 30px; }
 
-    /* ── MENSAGEM DO DIA ── */
+    /* â”€â”€ MENSAGEM DO DIA â”€â”€ */
     #mensagem-dia { background: var(--ink); position: relative; overflow: hidden; }
     #mensagem-dia::before {
       content: '';
@@ -671,11 +885,11 @@
       .msg-envelope { padding: 36px 28px; }
     }
 
-    /* ── HEARTS ── */
+    /* â”€â”€ HEARTS â”€â”€ */
     .hfloat { position: fixed; pointer-events: none; z-index: 99989; animation: floatUp ease-in forwards; }
     @keyframes floatUp { 0%{opacity:1;transform:translateY(0) rotate(0deg)} 100%{opacity:0;transform:translateY(-105vh) rotate(30deg)} }
 
-    /* ── LOADING SCREEN ── */
+    /* â”€â”€ LOADING SCREEN â”€â”€ */
     #loader {
       position: fixed; inset: 0; z-index: 999999;
       background: var(--ink);
@@ -785,22 +999,50 @@
     }
     @keyframes fillBar { to { width: 100%; } }
 
-    /* ── KEYFRAMES ── */
+    /* â”€â”€ KEYFRAMES â”€â”€ */
     @keyframes fadeUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
     @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
     @keyframes scaleIn  { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} }
     @keyframes spin     { to{transform:rotate(360deg)} }
 
-    /* ── RESPONSIVE ── */
+    /* â”€â”€ RESPONSIVE â”€â”€ */
     @media (max-width: 700px) {
       /* Cursor off */
       * { cursor: auto !important; }
       #cursor, #cursor-ring { display: none; }
 
       /* Nav */
-      nav { padding: 0 12px; height: 56px; }
-      .nav-inner { gap: 14px; }
-      nav a { font-size: 0.72rem; letter-spacing: 0.08em; }
+      nav {
+        height: 66px;
+        padding: 10px 0 0;
+        justify-content: flex-start;
+      }
+      nav::before,
+      nav::after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        width: 30px;
+        height: 46px;
+        z-index: 2;
+        pointer-events: none;
+      }
+      nav::before { left: 0; background: linear-gradient(90deg, rgba(247,240,230,0.96), transparent); }
+      nav::after { right: 0; background: linear-gradient(270deg, rgba(247,240,230,0.96), transparent); }
+      .nav-inner {
+        max-width: none;
+        width: 100%;
+        justify-content: flex-start;
+        margin: 0 12px;
+        padding: 7px;
+        border-radius: 999px;
+        scroll-padding: 18px;
+      }
+      nav a {
+        font-size: 0.66rem;
+        letter-spacing: 0.06em;
+        padding: 8px 11px 7px;
+      }
 
       /* Hero */
       .hero { padding: 90px 20px 60px; }
@@ -830,21 +1072,34 @@
       .carta-wrap { padding: 32px 20px; }
       .carta-wrap p { font-size: 1.05rem; }
 
-      /* Razões */
+      /* RazÃµes */
       .reasons-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
       .r-card { padding: 20px 16px; }
       .r-num { font-size: 2.2rem; }
 
-      /* Músicas */
+      /* MÃºsicas */
       .music-inner { grid-template-columns: 1fr; gap: 24px; text-align: center; }
       .music-cover { margin: 0 auto; width: 140px; height: 140px; }
       .song-list li { font-size: 0.88rem; padding: 11px 0; }
+
+      /* Cinema */
+      .cinema-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .cinema-card h3 { min-height: 72px; padding: 14px 10px; font-size: 1rem; }
+
+      /* SÃ©ries */
+      .series-feature { grid-template-columns: 1fr; gap: 24px; padding: 22px; text-align: center; }
+      .series-poster { max-width: 210px; width: 100%; margin: 0 auto; }
 
       /* Timer */
       .timer-grid { gap: 10px; }
       .t-unit { min-width: 76px; padding: 18px 12px 14px; }
       .t-num { font-size: 2rem; }
       .t-label { font-size: 0.62rem; }
+
+      /* Ãrvore */
+      .tree-wrap { grid-template-columns: 1fr; gap: 22px; }
+      .love-tree { height: 300px; }
+      .tree-info { padding: 28px 22px; text-align: center; }
 
       /* Mensagem do dia */
       .msg-envelope { padding: 28px 22px; }
@@ -877,10 +1132,11 @@
 
     @media (max-width: 400px) {
       .reasons-grid { grid-template-columns: 1fr; }
+      .cinema-grid { grid-template-columns: 1fr; }
       .timer-grid { gap: 8px; }
       .t-unit { min-width: 68px; padding: 14px 10px 12px; }
       .t-num { font-size: 1.7rem; }
-      nav a { font-size: 0.68rem; letter-spacing: 0.05em; }
+      nav a { font-size: 0.62rem; letter-spacing: 0.04em; padding-inline: 10px; }
     }
   </style>
 </head>
@@ -891,13 +1147,13 @@
     <div class="loader-bg-lines"></div>
     <div class="loader-glow"></div>
     <div class="loader-content">
-      <p class="loader-eyebrow">uma lembrança feita com carinho</p>
+      <p class="loader-eyebrow">uma lembranÃ§a feita com carinho</p>
       <div class="loader-name">
         <span class="word">Talyssa</span>
         <span class="word italic">Mayra</span>
       </div>
       <div class="loader-divider"></div>
-      <p class="loader-sub">"…sempre apontou para você."</p>
+      <p class="loader-sub">"Para melhor Engenheira Florestal do mundo."</p>
       <div class="loader-bar-wrap">
         <div class="loader-bar-track">
           <div class="loader-bar-fill"></div>
@@ -917,11 +1173,14 @@
   <nav id="mainNav">
     <div class="nav-inner">
       <a href="#mensagem-dia">Mensagem</a>
-      <a href="#historia">História</a>
+      <a href="#historia">HistÃ³ria</a>
       <a href="#galeria">Galeria</a>
       <a href="#carta">Carta</a>
-      <a href="#razoes">Razões</a>
-      <a href="#musicas">Músicas</a>
+      <a href="#razoes">RazÃµes</a>
+      <a href="#musicas">MÃºsicas</a>
+      <a href="#arvore">Ãrvore</a>
+      <a href="#cinema">Cinema</a>
+      <a href="#series">SÃ©ries</a>
       <a href="#livro">O Livro</a>
       <a href="#final">Final</a>
     </div>
@@ -934,36 +1193,36 @@
         <img src="fotos/talyssa.jpeg" alt="Talyssa" class="hero-photo" />
       </div>
       <h1>Talyssa <em>Mayra</em></h1>
-      <p class="hero-sub">Desde que você entrou na minha vida, tudo começou a fazer mais sentido.</p>
+      <p class="hero-sub">Desde que vocÃª entrou na minha vida, tudo comeÃ§ou a fazer mais sentido.</p>
       <p class="hero-quote">
-        "Talvez a gente não tenha sido feito para o mesmo momento…
-        mas isso não significa que não seja para o mesmo destino."
+        "Talvez a gente nÃ£o tenha sido feito para o mesmo momentoâ€¦
+        mas isso nÃ£o significa que nÃ£o seja para o mesmo destino."
       </p>
-      <a href="#historia" class="btn"><span>Nossa História ↓</span></a>
+      <a href="#historia" class="btn"><span>Nossa HistÃ³ria â†“</span></a>
     </div>
   </section>
 
   <!-- MENSAGEM DO DIA -->
   <section id="mensagem-dia">
-    <p class="eyebrow reveal">Para Você</p>
-    <h2 class="reveal">Mensagem <em>do Dia</em> 💌</h2>
+    <p class="eyebrow reveal">Para VocÃª</p>
+    <h2 class="reveal">Mensagem <em>do Dia</em> ðŸ’Œ</h2>
     <div class="msg-card reveal">
       <p class="msg-day-badge" id="msgDayLabel">Segunda-feira</p>
       <div class="msg-envelope">
         <p class="msg-text" id="msgText"></p>
         <div class="msg-footer">
-          <span class="msg-sig">— com amor, sempre ❤️</span>
+          <span class="msg-sig">â€” com amor, sempre â¤ï¸</span>
           <span class="msg-counter" id="msgCounter"></span>
         </div>
       </div>
       <div class="msg-nav">
-        <button class="msg-nav-btn" onclick="mudarMensagem(-1)" title="Anterior">◀</button>
-        <button class="msg-nav-btn" onclick="mudarMensagem(1)" title="Próxima">▶</button>
+        <button class="msg-nav-btn" onclick="mudarMensagem(-1)" title="Anterior">â—€</button>
+        <button class="msg-nav-btn" onclick="mudarMensagem(1)" title="PrÃ³xima">â–¶</button>
       </div>
     </div>
   </section>
 
-  <!-- HISTÓRIA -->
+  <!-- HISTÃ“RIA -->
   <section id="historia">
     <p class="eyebrow reveal">Linha do Tempo</p>
     <h2 class="reveal">Nossos <em>Momentos</em></h2>
@@ -971,13 +1230,13 @@
 
       <div class="tl-item reveal">
         <div class="tl-img-wrap">
-          <img src="./fotos/momento2.jpeg" class="tl-img" onclick="abrirImagem(this.src)" alt="Início de Outubro" />
+          <img src="./fotos/momento2.jpeg" class="tl-img" onclick="abrirImagem(this.src)" alt="InÃ­cio de Outubro" />
           <div class="tl-dot"></div>
         </div>
         <div class="tl-text">
           <p class="tl-date">Outubro 2025</p>
           <h3>Primeiro Encontro</h3>
-          <p>Nos vimos pessoalmente pela primeira vez — e ali eu soube que havia algo diferente.</p>
+          <p>Nos vimos pessoalmente pela primeira vez â€” e ali eu soube que havia algo diferente.</p>
         </div>
       </div>
 
@@ -989,7 +1248,7 @@
         <div class="tl-text">
           <p class="tl-date">Outubro 2025</p>
           <h3>Primeiro Date</h3>
-          <p>As conversas, os sorrisos, os silêncios bons e tudo aquilo que só nós entendemos.</p>
+          <p>As conversas, os sorrisos, os silÃªncios bons e tudo aquilo que sÃ³ nÃ³s entendemos.</p>
         </div>
       </div>
 
@@ -1001,7 +1260,7 @@
         <div class="tl-text">
           <p class="tl-date">Novembro 2025</p>
           <h3>Nosso Primeiro Passeio</h3>
-          <p>Um momento simples, mas que se tornou uma lembrança especial que guardo com carinho.</p>
+          <p>Um momento simples, mas que se tornou uma lembranÃ§a especial que guardo com carinho.</p>
         </div>
       </div>
 
@@ -1013,7 +1272,7 @@
         <div class="tl-text">
           <p class="tl-date">Janeiro 2026</p>
           <h3>Primeiro Ano Novo Juntos</h3>
-          <p>Começar um novo ano ao seu lado fez tudo parecer ainda mais bonito e cheio de significado.</p>
+          <p>ComeÃ§ar um novo ano ao seu lado fez tudo parecer ainda mais bonito e cheio de significado.</p>
         </div>
       </div>
 
@@ -1022,10 +1281,10 @@
 
   <!-- GALERIA -->
   <section id="galeria">
-    <p class="eyebrow reveal">Memórias</p>
-    <h2 class="reveal">Nossa <em>Galeria</em> 📸</h2>
+    <p class="eyebrow reveal">MemÃ³rias</p>
+    <h2 class="reveal">Nossa <em>Galeria</em></h2>
     <div class="gallery-outer reveal">
-      <button class="gal-btn" onclick="rolarGaleria(-1)">◀</button>
+      <button class="gal-btn" onclick="rolarGaleria(-1)">â—€</button>
       <div class="gallery-track" id="galeriaScroll">
         <img src="./fotos/foto1.jpeg"  alt="Foto 1"  onclick="abrirImagem(this.src)" />
         <img src="./fotos/foto2.jpeg"  alt="Foto 2"  onclick="abrirImagem(this.src)" />
@@ -1040,50 +1299,50 @@
         <img src="./fotos/foto11.jpeg" alt="Foto 11" onclick="abrirImagem(this.src)" />
         <img src="./fotos/foto12.jpeg" alt="Foto 12" onclick="abrirImagem(this.src)" />
       </div>
-      <button class="gal-btn" onclick="rolarGaleria(1)">▶</button>
+      <button class="gal-btn" onclick="rolarGaleria(1)">â–¶</button>
     </div>
   </section>
 
   <!-- CARTA -->
   <section id="carta">
-    <p class="eyebrow reveal">Palavras do Coração</p>
-    <h2 class="reveal">Uma <em>Carta</em> Para Você</h2>
+    <p class="eyebrow reveal">Palavras do CoraÃ§Ã£o</p>
+    <h2 class="reveal">Uma <em>Carta</em> Para VocÃª</h2>
     <div class="carta-wrap reveal">
-      <p>Nem sempre o tempo escolhe o momento perfeito, mas às vezes ele apenas apresenta a pessoa certa.</p>
-      <p>Você chegou de uma forma inesperada, mas profundamente marcante. E desde então, cada detalhe passou a ter mais significado.</p>
-      <p>Talvez a vida tenha seus próprios caminhos, seus próprios atrasos e seus próprios planos. Mas se existir destino, eu gosto de pensar que ele, em algum momento, sempre apontou para você.</p>
-      <p>Esse site não é apenas uma homenagem. É uma forma simples de dizer que você é importante, especial e inesquecível.</p>
-      <p>E se for para caminhar em direção a algo bonito… eu espero que seja ao seu lado.</p>
-      <p class="carta-sig">— com amor ❤️</p>
+      <p>Nem sempre o tempo escolhe o momento perfeito, mas Ã s vezes ele apenas apresenta a pessoa certa.</p>
+      <p>VocÃª chegou de uma forma inesperada, mas profundamente marcante. E desde entÃ£o, cada detalhe passou a ter mais significado.</p>
+      <p>Talvez a vida tenha seus prÃ³prios caminhos, seus prÃ³prios atrasos e seus prÃ³prios planos. Mas se existir destino, eu gosto de pensar que ele, em algum momento, sempre apontou para vocÃª.</p>
+      <p>Esse site nÃ£o Ã© apenas uma homenagem. Ã‰ uma forma simples de dizer que vocÃª Ã© importante, especial e inesquecÃ­vel.</p>
+      <p>E se for para caminhar em direÃ§Ã£o a algo bonitoâ€¦ eu espero que seja ao seu lado.</p>
+      <p class="carta-sig">â€” com amor â¤ï¸</p>
     </div>
   </section>
 
-  <!-- RAZÕES -->
+  <!-- RAZÃ•ES -->
   <section id="razoes">
     <p class="eyebrow reveal">Com Amor</p>
     <h2 class="reveal">10 Motivos Pelos Quais <em>Eu Te Amo</em></h2>
     <div class="reasons-grid">
-      <div class="r-card reveal"><div class="r-num">01</div><h4>Seu Jeito</h4><p>Existe algo em você que torna tudo mais leve.</p></div>
-      <div class="r-card reveal"><div class="r-num">02</div><h4>Sua Calma</h4><p>Sua paz também acalma o meu coração.</p></div>
+      <div class="r-card reveal"><div class="r-num">01</div><h4>Seu Jeito</h4><p>Existe algo em vocÃª que torna tudo mais leve.</p></div>
+      <div class="r-card reveal"><div class="r-num">02</div><h4>Sua Calma</h4><p>Sua paz tambÃ©m acalma o meu coraÃ§Ã£o.</p></div>
       <div class="r-card reveal"><div class="r-num">03</div><h4>Seu Sorriso</h4><p>Ele consegue mudar completamente o meu dia.</p></div>
-      <div class="r-card reveal"><div class="r-num">04</div><h4>Sua Força</h4><p>Admiro a mulher incrível que você é.</p></div>
-      <div class="r-card reveal"><div class="r-num">05</div><h4>Sua Presença</h4><p>Até o silêncio fica melhor quando é com você.</p></div>
-      <div class="r-card reveal"><div class="r-num">06</div><h4>Sua Persistência</h4><p>Sua determinação inspira quem está perto.</p></div>
-      <div class="r-card reveal"><div class="r-num">07</div><h4>Seu Cuidado</h4><p>Você demonstra amor até nos pequenos detalhes.</p></div>
-      <div class="r-card reveal"><div class="r-num">08</div><h4>Sua Parceria</h4><p>Caminhar ao seu lado faz tudo parecer mais possível.</p></div>
-      <div class="r-card reveal"><div class="r-num">09</div><h4>Seu Carinho</h4><p>Ele aquece até os dias mais difíceis.</p></div>
-      <div class="r-card reveal"><div class="r-num">10</div><h4>Sua Preocupação</h4><p>Ela mostra o quanto seu coração é verdadeiro.</p></div>
+      <div class="r-card reveal"><div class="r-num">04</div><h4>Sua ForÃ§a</h4><p>Admiro a mulher incrÃ­vel que vocÃª Ã©.</p></div>
+      <div class="r-card reveal"><div class="r-num">05</div><h4>Sua PresenÃ§a</h4><p>AtÃ© o silÃªncio fica melhor quando Ã© com vocÃª.</p></div>
+      <div class="r-card reveal"><div class="r-num">06</div><h4>Sua PersistÃªncia</h4><p>Sua determinaÃ§Ã£o inspira quem estÃ¡ perto.</p></div>
+      <div class="r-card reveal"><div class="r-num">07</div><h4>Seu Cuidado</h4><p>VocÃª demonstra amor atÃ© nos pequenos detalhes.</p></div>
+      <div class="r-card reveal"><div class="r-num">08</div><h4>Sua Parceria</h4><p>Caminhar ao seu lado faz tudo parecer mais possÃ­vel.</p></div>
+      <div class="r-card reveal"><div class="r-num">09</div><h4>Seu Carinho</h4><p>Ele aquece atÃ© os dias mais difÃ­ceis.</p></div>
+      <div class="r-card reveal"><div class="r-num">10</div><h4>Sua PreocupaÃ§Ã£o</h4><p>Ela mostra o quanto seu coraÃ§Ã£o Ã© verdadeiro.</p></div>
     </div>
   </section>
 
-  <!-- MÚSICAS -->
+  <!-- MÃšSICAS -->
   <section id="musicas">
     <p class="eyebrow reveal">Trilha Sonora</p>
-    <h2 class="reveal">Músicas Que Me <em>Lembram Você</em> 🎵</h2>
+    <h2 class="reveal">MÃºsicas Que Me <em>Lembram VocÃª</em> ðŸŽµ</h2>
     <div class="music-inner reveal">
       <img src="./fotos/twentyonepilots.jpg" alt="Twenty One Pilots" class="music-cover" />
       <div>
-        <p class="music-band">Com certeza é Twenty One Pilots.</p>
+        <p class="music-band">Com certeza Ã© Twenty One Pilots.</p>
         <ul class="song-list">
           <li><span class="song-num">01</span> Smithereens</li>
           <li><span class="song-num">02</span> Heavydirtysoul</li>
@@ -1098,7 +1357,7 @@
   <!-- CONTADOR -->
   <section id="timer">
     <p class="eyebrow reveal">Contagem</p>
-    <h2 class="reveal">Nosso <em>Tempo Juntos</em> ⏳</h2>
+    <h2 class="reveal">Nosso <em>Tempo Juntos</em> â³</h2>
     <div class="timer-grid reveal">
       <div class="t-unit"><div class="t-num" id="cnt-d">0</div><div class="t-label">Dias</div></div>
       <div class="t-unit"><div class="t-num" id="cnt-h">00</div><div class="t-label">Horas</div></div>
@@ -1107,24 +1366,95 @@
     </div>
   </section>
 
+  <!-- ÃRVORE -->
+  <section id="arvore">
+    <p class="eyebrow reveal">Crescendo Todos os Dias</p>
+    <h2 class="reveal">Nossa <em>Ãrvore</em></h2>
+    <div class="tree-wrap reveal">
+      <div class="love-tree" id="loveTree" aria-label="Ãrvore do nosso amor">
+        <div class="tree-ground"></div>
+        <div class="tree-branch left"></div>
+        <div class="tree-branch right"></div>
+        <div class="tree-trunk"></div>
+        <div class="tree-crown">
+          <span class="tree-heart">â™¥</span>
+          <span class="tree-heart">â™¥</span>
+          <span class="tree-heart">â™¥</span>
+          <span class="tree-heart">â™¥</span>
+          <span class="tree-heart">â™¥</span>
+        </div>
+      </div>
+      <div class="tree-info">
+        <h3>Um amor que cria raÃ­zes</h3>
+        <p>Desde o nosso comeÃ§o, essa Ã¡rvore cresce um pouquinho a cada dia, como tudo aquilo que a gente cuida com carinho.</p>
+        <div class="tree-days" id="treeDays">0</div>
+        <div class="tree-days-label">dias crescendo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CINEMA -->
+  <section id="cinema">
+    <p class="eyebrow reveal">Nossas SessÃµes</p>
+    <h2 class="reveal">Filmes Que Assistimos <em>No Cinema</em></h2>
+    <div class="cinema-grid">
+      <div class="cinema-card reveal">
+        <img src="./fotos/cinema1.jpeg" alt="InvocaÃ§Ã£o do Mal 4" onclick="abrirImagem(this.src)" />
+        <h3>InvocaÃ§Ã£o do Mal 4</h3>
+      </div>
+      <div class="cinema-card reveal">
+        <img src="./fotos/cinema2.jpeg" alt="O Telefone Preto 2" onclick="abrirImagem(this.src)" />
+        <h3>O Telefone Preto 2</h3>
+      </div>
+      <div class="cinema-card reveal">
+        <img src="./fotos/cinema3.jpeg" alt="Jujutsu Kaisen: ExecuÃ§Ã£o" onclick="abrirImagem(this.src)" />
+        <h3>Jujutsu Kaisen: ExecuÃ§Ã£o</h3>
+      </div>
+      <div class="cinema-card reveal">
+        <img src="./fotos/cinema4.jpeg" alt="Zootopia 2" onclick="abrirImagem(this.src)" />
+        <h3>Zootopia 2</h3>
+      </div>
+      <div class="cinema-card reveal">
+        <img src="./fotos/cinema5.jpeg" alt="A Empregada" onclick="abrirImagem(this.src)" />
+        <h3>A Empregada</h3>
+      </div>
+      <div class="cinema-card reveal">
+        <img src="./fotos/cinema6.jpeg" alt="Twenty One Pilots: More Than We Ever Imagined" onclick="abrirImagem(this.src)" />
+        <h3>Twenty One Pilots: More Than We Ever Imagined</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- SÃ‰RIES -->
+  <section id="series">
+    <p class="eyebrow reveal">Nossa SÃ©rie</p>
+    <h2 class="reveal">SÃ©ries Que Assistimos <em>Juntos</em></h2>
+    <div class="series-feature reveal">
+      <img src="./fotos/strangerthings.jpeg" alt="Stranger Things" class="series-poster" onclick="abrirImagem(this.src)" />
+      <div class="series-text">
+        <h3>Stranger Things</h3>
+        <p>Entre mistÃ©rios, sustos e aquele clima de outro mundo, essa foi a sÃ©rie que marcou um pedacinho da nossa histÃ³ria.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- LIVRO -->
   <section id="livro">
     <div class="livro-inner">
       <div class="livro-book reveal-left">
-        <img src="./fotos/livro.png" alt="Antes Que Você Partisse" class="livro-cover" />
+        <img src="./fotos/livro.png" alt="Antes Que VocÃª Partisse" class="livro-cover" />
       </div>
       <div class="livro-text reveal-right">
-        <p class="eyebrow">Escrito Para Você</p>
-        <h2>Antes Que Você <em>Partisse</em></h2>
-        <p class="livro-autor">Gabriel Areque</p>
+        <p class="eyebrow">Escrito Para VocÃª</p>
+        <h2>Antes Que VocÃª <em>Partisse</em></h2>
         <p class="livro-sinopse">
           <strong>Gabriel acreditava que algumas partes da vida simplesmente acabavam.</strong>
-          Até conhecer Talyssa Mayra.<br><br>
-          O que começa com uma conversa inesperada se transforma em uma conexão intensa, verdadeira e inesquecível.
-          Mas existe um problema: ela irá embora em cinco meses.<br><br>
-          Entre encontros, viagens, descobertas e despedidas inevitáveis, Gabriel aprende que algumas histórias
-          podem durar pouco tempo — e, ainda assim, marcar para sempre.<br><br>
-          <em>Uma história sobre amor, tempo e tudo aquilo que permanece, mesmo depois da partida.</em>
+          AtÃ© conhecer Talyssa Mayra.<br><br>
+          O que comeÃ§a com uma conversa inesperada se transforma em uma conexÃ£o intensa, verdadeira e inesquecÃ­vel.
+          Mas existe um problema: ela irÃ¡ embora em cinco meses.<br><br>
+          Entre encontros, viagens, descobertas e despedidas inevitÃ¡veis, Gabriel aprende que algumas histÃ³rias
+          podem durar pouco tempo â€” e, ainda assim, marcar para sempre.<br><br>
+          <em>Uma histÃ³ria sobre amor, tempo e tudo aquilo que permanece, mesmo depois da partida.</em>
         </p>
       </div>
     </div>
@@ -1132,28 +1462,28 @@
 
   <!-- FINAL -->
   <section id="final">
-    <p class="eyebrow reveal">Ainda Há Mais</p>
-    <h2 class="reveal">Isso é só o <em>começo</em></h2>
-    <p class="reveal">Ainda temos muitos capítulos para escrever.</p>
-    <p class="final-q reveal">"Entre todos os caminhos, eu escolheria você outra vez."</p>
-    <button class="btn btn-white reveal" onclick="surpresa()"><span>Clique aqui se você me ama ❤️</span></button>
+    <p class="eyebrow reveal">Uma Promessa</p>
+    <h2 class="reveal">Eu escolheria <em>vocÃª</em></h2>
+    <p class="reveal">Hoje, amanhÃ£ e em todos os dias que a vida permitir, meu desejo Ã© continuar encontrando paz no seu sorriso e amor na sua presenÃ§a.</p>
+    <p class="final-q reveal">"Entre todos os finais possÃ­veis, o mais bonito sempre vai ser aquele em que eu fico com vocÃª."</p>
+    <button class="btn btn-white reveal" onclick="surpresa()"><span>Clique aqui se vocÃª me ama â¤ï¸</span></button>
   </section>
 
   <footer>
-    Feito com <span>❤️</span> para Talyssa Mayra
+    Feito com <span>â¤ï¸</span> para Talyssa Mayra
   </footer>
 
   <script>
-    // ── LOADING SCREEN ──
+    // â”€â”€ LOADING SCREEN â”€â”€
     window.addEventListener('load', () => {
       setTimeout(() => {
         const loader = document.getElementById('loader');
         loader.classList.add('hide');
         setTimeout(() => loader.remove(), 1000);
-      }, 3600);
+      }, 4600);
     });
 
-    // ── CURSOR ──
+    // â”€â”€ CURSOR â”€â”€
     const cur = document.getElementById('cursor');
     const ring = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1167,7 +1497,7 @@
     }
     animCursor();
 
-    // ── PARTICLES ──
+    // â”€â”€ PARTICLES â”€â”€
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let pts = [];
@@ -1211,11 +1541,33 @@
     }
     drawParticles();
 
-    // ── NAV ──
+    // â”€â”€ NAV â”€â”€
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 50));
 
-    // ── SCROLL REVEAL ──
+    const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
+    const pageSections = navLinks
+      .map(link => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+    function setActiveNav() {
+      const marker = scrollY + innerHeight * 0.35;
+      let current = pageSections[0];
+      pageSections.forEach(section => {
+        if (section.offsetTop <= marker) current = section;
+      });
+      navLinks.forEach(link => {
+        const active = current && link.getAttribute('href') === `#${current.id}`;
+        link.classList.toggle('active', active);
+        if (active && innerWidth <= 700) {
+          link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+    }
+    window.addEventListener('scroll', setActiveNav, { passive: true });
+    window.addEventListener('resize', setActiveNav);
+    setActiveNav();
+
+    // â”€â”€ SCROLL REVEAL â”€â”€
     const allReveal = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
     const revObs = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
@@ -1227,95 +1579,103 @@
     }, { threshold: 0.1 });
     allReveal.forEach(el => revObs.observe(el));
 
-    // ── CONTADOR ──
+    // â”€â”€ CONTADOR â”€â”€
     const start = new Date("2025-10-01T00:00:00");
     const pad = n => String(n).padStart(2, '0');
     function tick() {
       const d = Date.now() - start;
-      document.getElementById('cnt-d').textContent = Math.floor(d / 86400000);
+      const days = Math.floor(d / 86400000);
+      document.getElementById('cnt-d').textContent = days;
       document.getElementById('cnt-h').textContent = pad(Math.floor((d / 3600000) % 24));
       document.getElementById('cnt-m').textContent = pad(Math.floor((d / 60000) % 60));
       document.getElementById('cnt-s').textContent = pad(Math.floor((d / 1000) % 60));
+      const tree = document.getElementById('loveTree');
+      const treeDays = document.getElementById('treeDays');
+      if (tree && treeDays) {
+        const growth = Math.min(1, Math.max(0.18, days / 365));
+        tree.style.setProperty('--growth', growth.toFixed(3));
+        treeDays.textContent = days;
+      }
     }
     tick(); setInterval(tick, 1000);
 
-    // ── GALERIA ──
+    // â”€â”€ GALERIA â”€â”€
     function rolarGaleria(d) { document.getElementById('galeriaScroll').scrollBy({ left: d * 340, behavior: 'smooth' }); }
 
-    // ── LIGHTBOX ──
+    // â”€â”€ LIGHTBOX â”€â”€
     function abrirImagem(src) {
       const lb = document.createElement('div');
       lb.className = 'lightbox';
-      lb.innerHTML = `<span class="lb-close" onclick="event.stopPropagation();this.parentElement.remove()">✕</span><img src="${src}" onclick="event.stopPropagation()" />`;
+      lb.innerHTML = `<span class="lb-close" onclick="event.stopPropagation();this.parentElement.remove()">âœ•</span><img src="${src}" onclick="event.stopPropagation()" />`;
       lb.onclick = () => lb.remove();
       document.body.appendChild(lb);
     }
 
-    // ── MENSAGEM DO DIA ──
-    const diasSemana = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+    // â”€â”€ MENSAGEM DO DIA â”€â”€
+    const diasSemana = ['Domingo','Segunda-feira','TerÃ§a-feira','Quarta-feira','Quinta-feira','Sexta-feira','SÃ¡bado'];
     const mensagens = {
       0: [ // Domingo
-        "Domingos me lembram de tudo que é calmo, bonito e verdadeiro — assim como você.",
-        "Nos dias de descanso, minha mente sempre encontra um caminho até você.",
-        "Domingo é o dia em que o tempo parece mais gentil. Assim como você é comigo.",
-        "Que esse domingo seja tão suave quanto o seu jeito de ser.",
-        "Nos dias sem pressa, percebo o quanto você faz parte dos meus pensamentos mais bonitos.",
-        "Domingo cheirando a café e lembrando de você — o melhor tipo de manhã.",
-        "Que o seu domingo tenha a mesma calma que você me traz.",
+        "Domingos me lembram de tudo que Ã© calmo, bonito e verdadeiro â€” assim como vocÃª.",
+        "Nos dias de descanso, minha mente sempre encontra um caminho atÃ© vocÃª.",
+        "Domingo Ã© o dia em que o tempo parece mais gentil. Assim como vocÃª Ã© comigo.",
+        "Que esse domingo seja tÃ£o suave quanto o seu jeito de ser.",
+        "Nos dias sem pressa, percebo o quanto vocÃª faz parte dos meus pensamentos mais bonitos.",
+        "Domingo cheirando a cafÃ© e lembrando de vocÃª â€” o melhor tipo de manhÃ£.",
+        "Que o seu domingo tenha a mesma calma que vocÃª me traz.",
       ],
       1: [ // Segunda
-        "Semanas novas sempre me lembram que tenho você para atravessá-las.",
-        "Segunda-feira fica mais leve quando o primeiro pensamento é você.",
-        "Começo de semana, e você já é o melhor pensamento que eu poderia ter.",
-        "Que essa semana te traga coisas tão boas quanto o que você me traz.",
-        "Semanas passam, mas o que sinto por você só fica mais certo.",
-        "Segunda-feira não é tão difícil quando existe você no final do dia.",
-        "Toda semana nova é uma chance de te falar o quanto você importa.",
+        "Semanas novas sempre me lembram que tenho vocÃª para atravessÃ¡-las.",
+        "Segunda-feira fica mais leve quando o primeiro pensamento Ã© vocÃª.",
+        "ComeÃ§o de semana, e vocÃª jÃ¡ Ã© o melhor pensamento que eu poderia ter.",
+        "Que essa semana te traga coisas tÃ£o boas quanto o que vocÃª me traz.",
+        "Semanas passam, mas o que sinto por vocÃª sÃ³ fica mais certo.",
+        "Segunda-feira nÃ£o Ã© tÃ£o difÃ­cil quando existe vocÃª no final do dia.",
+        "Toda semana nova Ã© uma chance de te falar o quanto vocÃª importa.",
       ],
-      2: [ // Terça
-        "Você é o tipo de pessoa que transforma dias comuns em memórias.",
-        "Terça-feira — e você ainda é o melhor pensamento que tenho.",
-        "Dias comuns ficam extraordinários quando eu penso em você.",
-        "Você tem o dom de tornar qualquer momento especial, mesmo sem saber.",
-        "Nem todo dia tem grandes eventos — mas todo dia tem você, e isso já basta.",
-        "Terças passam rápido quando minha mente tem você pra visitar.",
-        "Dias simples com você valem mais do que grandes dias sem você.",
+      2: [ // TerÃ§a
+        "VocÃª Ã© o tipo de pessoa que transforma dias comuns em memÃ³rias.",
+        "TerÃ§a-feira â€” e vocÃª ainda Ã© o melhor pensamento que tenho.",
+        "Dias comuns ficam extraordinÃ¡rios quando eu penso em vocÃª.",
+        "VocÃª tem o dom de tornar qualquer momento especial, mesmo sem saber.",
+        "Nem todo dia tem grandes eventos â€” mas todo dia tem vocÃª, e isso jÃ¡ basta.",
+        "TerÃ§as passam rÃ¡pido quando minha mente tem vocÃª pra visitar.",
+        "Dias simples com vocÃª valem mais do que grandes dias sem vocÃª.",
       ],
       3: [ // Quarta
-        "Metade da semana, e você ainda é o melhor pensamento do meu dia.",
-        "Quarta-feira — no meio do caminho, e você já me fez sorrir mais de uma vez.",
-        "A semana chega na metade, e eu ainda penso em você como se fosse a primeira vez.",
-        "Você transforma até as quartas-feiras em dias que valem a pena.",
-        "No meio de tudo, você aparece como uma pausa necessária e bonita.",
-        "Quarta: metade da semana, e inteira a certeza do quanto você é especial.",
-        "Você é o tipo de certeza que não depende do dia da semana.",
+        "Metade da semana, e vocÃª ainda Ã© o melhor pensamento do meu dia.",
+        "Quarta-feira â€” no meio do caminho, e vocÃª jÃ¡ me fez sorrir mais de uma vez.",
+        "A semana chega na metade, e eu ainda penso em vocÃª como se fosse a primeira vez.",
+        "VocÃª transforma atÃ© as quartas-feiras em dias que valem a pena.",
+        "No meio de tudo, vocÃª aparece como uma pausa necessÃ¡ria e bonita.",
+        "Quarta: metade da semana, e inteira a certeza do quanto vocÃª Ã© especial.",
+        "VocÃª Ã© o tipo de certeza que nÃ£o depende do dia da semana.",
       ],
       4: [ // Quinta
-        "Cada dia perto de você me prova que algumas escolhas nunca erram.",
-        "Quinta-feira — quase lá, e você tornando tudo mais suave.",
-        "Você é a prova de que algumas pessoas chegam pra ficar, mesmo que o tempo seja curto.",
-        "A semana quase acabou, e você foi o melhor pensamento de cada dia.",
-        "Quinta-feira — e eu ainda estou aqui, pensando em você como no primeiro dia.",
-        "Algumas coisas ficam melhores com o tempo. Você é uma delas.",
-        "Quinta-feira já vale quando começa pensando em você.",
+        "Cada dia perto de vocÃª me prova que algumas escolhas nunca erram.",
+        "Quinta-feira â€” quase lÃ¡, e vocÃª tornando tudo mais suave.",
+        "VocÃª Ã© a prova de que algumas pessoas chegam pra ficar, mesmo que o tempo seja curto.",
+        "A semana quase acabou, e vocÃª foi o melhor pensamento de cada dia.",
+        "Quinta-feira â€” e eu ainda estou aqui, pensando em vocÃª como no primeiro dia.",
+        "Algumas coisas ficam melhores com o tempo. VocÃª Ã© uma delas.",
+        "Quinta-feira jÃ¡ vale quando comeÃ§a pensando em vocÃª.",
       ],
       5: [ // Sexta
-        "O fim de semana chegou, mas o melhor de qualquer dia continua sendo você.",
-        "Sexta-feira — e o pensamento mais gostoso ainda é o de você.",
-        "A semana passa, mas o que eu sinto por você não tem prazo de validade.",
-        "Sexta merece comemoração. Você merece mais ainda.",
-        "Fim de semana chegando, e a primeira coisa que penso é em você.",
-        "Sextas são especiais. Você é mais ainda.",
-        "Que essa sexta te traga leveza, alegria e a certeza de que é muito especial.",
+        "O fim de semana chegou, mas o melhor de qualquer dia continua sendo vocÃª.",
+        "Sexta-feira â€” e o pensamento mais gostoso ainda Ã© o de vocÃª.",
+        "A semana passa, mas o que eu sinto por vocÃª nÃ£o tem prazo de validade.",
+        "Sexta merece comemoraÃ§Ã£o. VocÃª merece mais ainda.",
+        "Fim de semana chegando, e a primeira coisa que penso Ã© em vocÃª.",
+        "Sextas sÃ£o especiais. VocÃª Ã© mais ainda.",
+        "Que essa sexta te traga leveza, alegria e a certeza de que Ã© muito especial.",
       ],
-      6: [ // Sábado
-        "Nos dias livres, minha mente sempre encontra um caminho até você.",
-        "Sábado — o dia perfeito pra lembrar o quanto você importa.",
-        "Sábados com você na memória são os melhores sábados possíveis.",
-        "Dias livres me fazem perceber o quanto prefiro passá-los pensando em você.",
-        "Sábado de manhã, e você já é o meu pensamento favorito.",
-        "Que esse sábado seja tão especial quanto você é pra mim.",
-        "Sábado — o dia fica mais bonito quando começa lembrando de você.",
+      6: [ // SÃ¡bado
+        "Nos dias livres, minha mente sempre encontra um caminho atÃ© vocÃª.",
+        "SÃ¡bado â€” o dia perfeito pra lembrar o quanto vocÃª importa.",
+        "SÃ¡bados com vocÃª na memÃ³ria sÃ£o os melhores sÃ¡bados possÃ­veis.",
+        "Dias livres me fazem perceber o quanto prefiro passÃ¡-los pensando em vocÃª.",
+        "SÃ¡bado de manhÃ£, e vocÃª jÃ¡ Ã© o meu pensamento favorito.",
+        "Que esse sÃ¡bado seja tÃ£o especial quanto vocÃª Ã© pra mim.",
+        "SÃ¡bado â€” o dia fica mais bonito quando comeÃ§a lembrando de vocÃª.",
       ],
     };
 
@@ -1347,26 +1707,26 @@
 
     renderMensagem();
 
-    // ── SURPRESA ──
+    // â”€â”€ SURPRESA â”€â”€
     function surpresa() {
       lancarCoracoes();
       const bg = document.createElement('div');
       bg.className = 'modal-bg';
       bg.innerHTML = `
         <div class="modal-box">
-          <h2>Uma Carta Secreta ❤️</h2>
-          <p>Se existe algo que eu tenho certeza, é que algumas pessoas chegam na nossa vida não por acaso, mas porque deveriam estar ali.<br><br>
-          Você se tornou uma dessas certezas bonitas. Cada conversa, cada detalhe e cada momento ao seu lado fez tudo ganhar mais significado.<br><br>
-          Entre tantas possibilidades, eu ainda escolheria você. Entre tantos caminhos, eu ainda caminharia até você.<br><br>
-          E se isso tudo for só o começo… então eu mal posso esperar pelos próximos capítulos.</p>
-          <button class="btn" style="opacity:1;animation:none;" onclick="this.closest('.modal-bg').remove()"><span>Fechar ❤️</span></button>
+          <h2>Uma Carta Secreta â¤ï¸</h2>
+          <p>Se existe algo que eu tenho certeza, Ã© que algumas pessoas chegam na nossa vida nÃ£o por acaso, mas porque deveriam estar ali.<br><br>
+          VocÃª se tornou uma dessas certezas bonitas. Cada conversa, cada detalhe e cada momento ao seu lado fez tudo ganhar mais significado.<br><br>
+          Entre tantas possibilidades, eu ainda escolheria vocÃª. Entre tantos caminhos, eu ainda caminharia atÃ© vocÃª.<br><br>
+          E se isso tudo for sÃ³ o comeÃ§oâ€¦ entÃ£o eu mal posso esperar pelos prÃ³ximos capÃ­tulos.</p>
+          <button class="btn" style="opacity:1;animation:none;" onclick="this.closest('.modal-bg').remove()"><span>Fechar â¤ï¸</span></button>
         </div>`;
       bg.addEventListener('click', e => { if (e.target === bg) bg.remove(); });
       document.body.appendChild(bg);
     }
 
     function lancarCoracoes() {
-      const em = ['❤️','🌹','💕','✨','💖','🌸'];
+      const em = ['â¤ï¸','ðŸŒ¹','ðŸ’•','âœ¨','ðŸ’–','ðŸŒ¸'];
       for (let i = 0; i < 30; i++) {
         setTimeout(() => {
           const h = document.createElement('div');
